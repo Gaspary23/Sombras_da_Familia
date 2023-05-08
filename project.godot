@@ -8,6 +8,22 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "KinematicBody2D",
+"class": "Player",
+"language": "GDScript",
+"path": "res://Player/Player.gd"
+}, {
+"base": "Area2D",
+"class": "Radio",
+"language": "GDScript",
+"path": "res://Game/Area2D.gd"
+} ]
+_global_script_class_icons={
+"Player": "",
+"Radio": ""
+}
+
 [application]
 
 config/name="MyGame20231"

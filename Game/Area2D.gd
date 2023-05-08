@@ -1,20 +1,15 @@
 extends Area2D
+class_name Radio
 
+onready var sound = $JumpSound
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+export var interaction_parent: NodePath
 
+var playing = false
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-	
-func _on_Area2D_body_entered(body):
-	if Input.is_action_just_pressed("interact"):
-		print("interact")
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta: float) -> void:
+	if (interaction_parent != null and Input.is_action_just_pressed("interact")):
+		playing = not playing
+		print(playing)
+		if (playing):
+			sound.play()

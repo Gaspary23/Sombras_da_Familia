@@ -5,6 +5,7 @@ resource_name = "LowPassFilter"
 cutoff_hz = 20000.0
 
 [resource]
+bus/0/volume_db = -21.8264
 bus/1/name = "Music"
 bus/1/solo = false
 bus/1/mute = false

@@ -11,7 +11,6 @@ func _ready() -> void:
 	player = currentScene.get_node("Player")
 	
 func _physics_process(delta: float) -> void:
-	
 	if sceneLimit == null:
 		return
 		
@@ -37,4 +36,3 @@ func goto_scene(path: String):
 	currentScene = res.instance()
 	sceneLimit = null
 	get_tree().get_root().add_child(currentScene)
-	#self.add_child(currentScene)
