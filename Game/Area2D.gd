@@ -3,6 +3,8 @@ class_name Radio
 
 onready var sound = $JumpSound
 
+signal play_music
+
 export var interaction_parent: NodePath
 
 var playing = false
