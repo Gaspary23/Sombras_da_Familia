@@ -9,6 +9,7 @@ onready var sprite = $Sprite
 var velocity = Vector2.ZERO
 var rotation_dir = 0
 
+
 func get_side_input():
 	velocity.x = Input.get_action_strength("right")-Input.get_action_strength("left")
 	velocity.x *= speed

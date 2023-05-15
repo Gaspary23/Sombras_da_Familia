@@ -17,7 +17,7 @@ _global_script_classes=[ {
 "base": "Area2D",
 "class": "Radio",
 "language": "GDScript",
-"path": "res://Game/Area2D.gd"
+"path": "res://Items/Radio.gd"
 } ]
 _global_script_class_icons={
 "Player": "",
