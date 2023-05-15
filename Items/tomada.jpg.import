@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Radio.png-0feddc3f7bc247f7e9abb2500580306c.stex"
+path="res://.import/tomada.jpg-58976f369d1e4cd8c45d457d931cee57.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Radio.png"
-dest_files=[ "res://.import/Radio.png-0feddc3f7bc247f7e9abb2500580306c.stex" ]
+source_file="res://Items/tomada.jpg"
+dest_files=[ "res://.import/tomada.jpg-58976f369d1e4cd8c45d457d931cee57.stex" ]
 
 [params]
 

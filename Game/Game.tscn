@@ -6,7 +6,7 @@
 [ext_resource path="res://Game/HUD.gd" type="Script" id=4]
 [ext_resource path="res://Game/Game.gd" type="Script" id=5]
 [ext_resource path="res://Items/Washing_Machine.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Radio.png" type="Texture" id=7]
+[ext_resource path="res://Items/Radio.png" type="Texture" id=7]
 
 [sub_resource type="DynamicFont" id=2]
 size = 30
