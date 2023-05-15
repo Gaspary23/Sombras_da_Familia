@@ -3,15 +3,21 @@ class_name Radio
 
 onready var sound = $JumpSound
 
-signal play_music
+var touchingPlayer = false
 
 export var interaction_parent: NodePath
 
 var playing = false
 
 func _process(delta: float) -> void:
-	if (interaction_parent != null and Input.is_action_just_pressed("interact")):
+	if (Input.is_action_just_pressed("interact") and touchingPlayer):
 		playing = not playing
-		print(playing)
-		if (playing):
-			sound.play()
+		
+	if (playing):
+		sound.play()
+
+func _on_Radio_body_entered(_body: Node) -> void:
+	touchingPlayer = true
+
+func _on_Radio_body_exited(_body: Node) -> void:
+	touchingPlayer = false
