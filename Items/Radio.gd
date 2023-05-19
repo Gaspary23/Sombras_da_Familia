@@ -1,18 +1,21 @@
 extends Area2D
 class_name Radio
 
-onready var sound = $JumpSound
 export var interaction_parent: NodePath
 
+onready var sound = $Monster_Theme
 var touchingPlayer = false
 var playing = false
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if (Input.is_action_just_pressed("interact") and touchingPlayer):
-		playing = not playing
 		
-	if (playing):
+		
+		playing = not playing
+		print(playing)
+		
+	if (playing): # erro
 		sound.play()
 
 

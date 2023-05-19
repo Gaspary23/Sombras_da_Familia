@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Monters_Inc_Theme.mp3-31910609c3f90bb5908fc7d3c928ecd4.mp3str"
+
+[deps]
+
+source_file="res://SFX/Monters_Inc_Theme.mp3"
+dest_files=[ "res://.import/Monters_Inc_Theme.mp3-31910609c3f90bb5908fc7d3c928ecd4.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -12,7 +12,7 @@ func _ready() -> void:
 	player = currentScene.get_node("Player")
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if sceneLimit == null:
 		return
 		

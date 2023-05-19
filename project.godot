@@ -18,10 +18,16 @@ _global_script_classes=[ {
 "class": "Radio",
 "language": "GDScript",
 "path": "res://Items/Radio.gd"
+}, {
+"base": "Area2D",
+"class": "Washing_Machine",
+"language": "GDScript",
+"path": "res://Items/Washing_Machine.gd"
 } ]
 _global_script_class_icons={
 "Player": "",
-"Radio": ""
+"Radio": "",
+"Washing_Machine": ""
 }
 
 [application]

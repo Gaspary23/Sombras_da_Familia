@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Items/Radio.gd" type="Script" id=1]
 [ext_resource path="res://Items/Radio.png" type="Texture" id=2]
-[ext_resource path="res://SFX/jump1.ogg" type="AudioStream" id=3]
+[ext_resource path="res://SFX/Monters_Inc_Theme.mp3" type="AudioStream" id=3]
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 30, 30.25 )
@@ -17,13 +17,11 @@ scale = Vector2( 0.133333, 0.147619 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( 238, 532.25 )
 shape = SubResource( 3 )
 
-[node name="JumpSound" type="AudioStreamPlayer" parent="."]
+[node name="Monster_Theme" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 3 )
 
 [connection signal="body_entered" from="." to="." method="_on_Radio_body_entered"]
-[connection signal="body_entered" from="." to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_Radio_body_exited"]
