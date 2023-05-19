@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/washin.png-fae6d6e630b95662e3871fd36e9fa165.stex"
+path="res://.import/Plug.png-9e48f97a073c64d3e97fa79feafded3b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Items/washin.png"
-dest_files=[ "res://.import/washin.png-fae6d6e630b95662e3871fd36e9fa165.stex" ]
+source_file="res://Items/Plug.png"
+dest_files=[ "res://.import/Plug.png-9e48f97a073c64d3e97fa79feafded3b.stex" ]
 
 [params]
 

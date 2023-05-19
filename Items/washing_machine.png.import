@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tomada.jpg-58976f369d1e4cd8c45d457d931cee57.stex"
+path="res://.import/washing_machine.png-deb323537735a5efb3ed9351f538e831.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Items/tomada.jpg"
-dest_files=[ "res://.import/tomada.jpg-58976f369d1e4cd8c45d457d931cee57.stex" ]
+source_file="res://Items/washing_machine.png"
+dest_files=[ "res://.import/washing_machine.png-deb323537735a5efb3ed9351f538e831.stex" ]
 
 [params]
 
