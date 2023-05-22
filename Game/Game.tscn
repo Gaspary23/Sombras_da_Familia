@@ -28,6 +28,9 @@ scale = Vector2( 3.44932, 1 )
 [node name="CollisionShape2D" parent="Level1/Scenery/Grass" index="1"]
 position = Vector2( 7.5, -0.5 )
 
+[node name="Washing_Machine" parent="Level1/Scenery" index="2"]
+position = Vector2( -14, -1 )
+
 [node name="HUD" type="CanvasLayer" parent="." groups=["HUD"]]
 script = ExtResource( 4 )
 
