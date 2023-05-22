@@ -11,7 +11,7 @@ extents = Vector2( 513.5, 20 )
 [node name="Level1" type="Node"]
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
-position = Vector2( 534, 539 )
+position = Vector2( 527, 536 )
 
 [node name="Scenery" type="Node" parent="."]
 
