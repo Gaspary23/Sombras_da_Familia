@@ -4,4 +4,7 @@ onready var sanity_bar = $Sanity/Sanity_Progress
 
 
 func _on_Sanity_Timer_timeout() -> void:
-	sanity_bar.value -=1
+	if (get_tree().call_group("Level1", "is_playing")):
+		sanity_bar.value +=1
+	else:
+		sanity_bar.value -=1
