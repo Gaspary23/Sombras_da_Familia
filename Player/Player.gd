@@ -23,5 +23,9 @@ func get_side_input():
 
 
 func _physics_process(_delta):
-	get_side_input()
-	velocity = move_and_slide(velocity, Vector2.UP)
+	if (is_on_wall() and Input.is_action_just_pressed("interact")):
+		visible = not visible
+	if (visible):
+		get_side_input()
+		velocity = move_and_slide(velocity, Vector2.UP)
+	

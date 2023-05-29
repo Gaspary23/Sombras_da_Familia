@@ -13,10 +13,8 @@ func _process(_delta: float) -> void:
 
 
 func _on_Washing_Machine_body_entered(_body: Node) -> void:
-	print("W enter")
 	touchingPlayer = true
 
 
 func _on_Washing_Machine_body_exited(_body: Node) -> void:
-	print("W exit")
 	touchingPlayer = false
