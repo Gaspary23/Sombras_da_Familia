@@ -8,6 +8,7 @@
 [ext_resource path="res://GFX/Over.png" type="Texture" id=6]
 
 [node name="Game" type="Node2D"]
+position = Vector2( 1, 0 )
 script = ExtResource( 5 )
 
 [node name="Level1" parent="." groups=["Level1"] instance=ExtResource( 1 )]
@@ -15,6 +16,7 @@ script = ExtResource( 5 )
 [node name="Player" parent="Level1" index="0"]
 position = Vector2( 532, 533 )
 collision_mask = 1
+speed = 200
 
 [node name="Grass" parent="Level1/Scenery" index="0"]
 position = Vector2( 505, 586 )
@@ -27,7 +29,7 @@ scale = Vector2( 3.44932, 1 )
 position = Vector2( 7.5, -0.5 )
 
 [node name="Washing_Machine" parent="Level1/Scenery" index="2"]
-position = Vector2( -14, -1 )
+position = Vector2( -293, -3 )
 
 [node name="HUD" type="CanvasLayer" parent="." groups=["HUD"]]
 script = ExtResource( 4 )

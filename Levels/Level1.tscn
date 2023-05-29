@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Items/Radio.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Items/Washing_Machine.tscn" type="PackedScene" id=2]
 [ext_resource path="res://GFX/tiles/grass2.png" type="Texture" id=3]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Items/Wardrobe.tscn" type="PackedScene" id=5]
+[ext_resource path="res://WorkBench.tscn" type="PackedScene" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 513.5, 20 )
@@ -33,13 +34,17 @@ position = Vector2( -0.5, 0 )
 shape = SubResource( 1 )
 
 [node name="Radio" parent="Scenery" instance=ExtResource( 1 )]
+position = Vector2( 131, 0 )
 
 [node name="Washing_Machine" parent="Scenery" instance=ExtResource( 2 )]
-position = Vector2( -17, 0 )
+position = Vector2( -246, 0 )
 z_index = -1
 
-[node name="KinematicBody2D" parent="Scenery" instance=ExtResource( 5 )]
-position = Vector2( 94, 533 )
+[node name="Wardrobe" parent="Scenery" instance=ExtResource( 5 )]
+position = Vector2( 97, 446 )
+
+[node name="WorkBench" parent="Scenery" instance=ExtResource( 6 )]
+position = Vector2( 919, 504 )
 
 [node name="SceneLimit" type="Position2D" parent="."]
 position = Vector2( 573, 700 )
