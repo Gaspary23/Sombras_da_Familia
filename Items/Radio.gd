@@ -13,12 +13,10 @@ func _process(_delta: float) -> void:
 
 
 func _on_Radio_body_entered(_body: Node) -> void:
-	print("R enter")
 	touchingPlayer = true
 
 
 func _on_Radio_body_exited(_body: Node) -> void:
-	print("R exit")
 	touchingPlayer = false
 
 
