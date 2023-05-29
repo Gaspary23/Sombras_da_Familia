@@ -7,6 +7,7 @@ onready var target = position
 onready var sprite = $Sprite
 onready var sound = $Door
 
+var playDoor = true
 var velocity = Vector2.ZERO
 var rotation_dir = 0
 
@@ -25,9 +26,14 @@ func get_side_input():
 
 func _physics_process(_delta):
 	if (is_on_wall() and Input.is_action_just_pressed("interact")):
-		sound.play()
+		if (not sound.is_playing() and playDoor):
+			sound.play()
+			playDoor = false
+		else:
+			sound.stop()
 		visible = not visible
 	if (visible):
+		playDoor = true
 		get_side_input()
 		velocity = move_and_slide(velocity, Vector2.UP)
 	

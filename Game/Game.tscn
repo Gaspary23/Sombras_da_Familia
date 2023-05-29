@@ -16,7 +16,6 @@ script = ExtResource( 5 )
 [node name="Player" parent="Level1" index="0"]
 position = Vector2( 532, 533 )
 collision_mask = 1
-speed = 200
 
 [node name="Grass" parent="Level1/Scenery" index="0"]
 position = Vector2( 505, 586 )
