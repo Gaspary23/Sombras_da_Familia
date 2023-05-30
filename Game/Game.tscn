@@ -49,6 +49,7 @@ texture_progress = ExtResource( 3 )
 autostart = true
 
 [connection signal="input_event" from="Level1/Player" to="Level1/Player" method="_on_Player_input_event"]
+[connection signal="radio_playing" from="Level1/Scenery/Radio" to="HUD" method="_on_Radio_radio_playing"]
 [connection signal="timeout" from="HUD/Sanity/Sanity_Timer" to="HUD" method="_on_Sanity_Timer_timeout"]
 
 [editable path="Level1"]

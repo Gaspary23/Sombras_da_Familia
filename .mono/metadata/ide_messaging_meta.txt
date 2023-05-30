@@ -1,0 +1,2 @@
+﻿44655
+/opt/godot3-mono/godot.x11.opt.tools.64.mono
