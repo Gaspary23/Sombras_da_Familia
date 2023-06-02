@@ -5,6 +5,8 @@ var progress_bars : CanvasLayer
 
 var currentScene = null
 
+onready var sound = $gameOverSound
+
 
 func _ready() -> void:
 	currentScene = get_child(0) # pega o Level1, etc
@@ -14,6 +16,10 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	if progress_bars.sanity_bar.value <= 0:
+		if (not sound.is_playing()):
+			sound.play()
+		else:
+			sound.stop()
 		get_tree().change_scene("res://GameOver.tscn")
 
 

@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 
-enum State {action,waitng,checking,walking}
+enum State {action,waiting,checking,walking}
 
 var levelOfSuspission: int = 0
 var taskTime: int = 0
