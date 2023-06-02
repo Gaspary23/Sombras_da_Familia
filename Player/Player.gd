@@ -33,6 +33,8 @@ func _physics_process(_delta):
 			sound.stop()
 			
 		visible = not visible
+		if(visible):
+			sound.play()
 	if (visible):
 		playDoor = true
 		get_side_input()

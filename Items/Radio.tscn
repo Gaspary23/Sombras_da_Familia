@@ -21,7 +21,7 @@ visible = false
 position = Vector2( 238, 532.25 )
 shape = SubResource( 3 )
 
-[node name="Monster_Theme" type="AudioStreamPlayer2D" parent="."]
+[node name="Monster_Theme" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
 
 [connection signal="body_entered" from="." to="." method="_on_Radio_body_entered"]

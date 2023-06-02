@@ -2,11 +2,13 @@ extends Area2D
 
 onready var sound = $Washing
 var touchingPlayer = false
+var playingSound = false
 
 
 func _process(_delta: float) -> void:
 	if (Input.is_action_just_pressed("interact") and touchingPlayer):
-		if (not sound.is_playing()):
+		playingSound = not playingSound
+		if (playingSound):
 			sound.play()
 		else:
 			sound.stop()

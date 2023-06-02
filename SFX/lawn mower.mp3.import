@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/lawn mower.mp3-c57a1ae28c868528f3b6b97c5082834d.mp3str"
+
+[deps]
+
+source_file="res://SFX/lawn mower.mp3"
+dest_files=[ "res://.import/lawn mower.mp3-c57a1ae28c868528f3b6b97c5082834d.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

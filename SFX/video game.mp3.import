@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/video game.mp3-f81628ca43162d68786c4e9a84637978.mp3str"
+
+[deps]
+
+source_file="res://SFX/video game.mp3"
+dest_files=[ "res://.import/video game.mp3-f81628ca43162d68786c4e9a84637978.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
