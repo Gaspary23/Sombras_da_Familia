@@ -1,33 +1,25 @@
 extends Node2D
 
-var sceneLimit : Position2D
 var player : KinematicBody2D
+var progress_bars : CanvasLayer
 
 var currentScene = null
 
 
 func _ready() -> void:
 	currentScene = get_child(0) # pega o Level1, etc
-	sceneLimit = currentScene.get_node("SceneLimit")
 	player = currentScene.get_node("Player")
+	progress_bars = get_node("HUD")
 
 
 func _physics_process(_delta: float) -> void:
-	if sceneLimit == null:
-		return
-		
-	if player.position.y > sceneLimit.position.y:
+	if progress_bars.sanity_bar.value <= 0:
 		get_tree().change_scene("res://GameOver.tscn")
-		
-	if Input.is_key_pressed(KEY_X):
-		call_deferred("goto_scene", "res://GameOver.tscn")
 
 
 func goto_scene(path: String):
-	print("Total children: "+str(get_child_count()))
 	var world := get_child(0)
 	world.free()
 	var res := ResourceLoader.load(path)
 	currentScene = res.instance()
-	sceneLimit = null
 	get_tree().get_root().add_child(currentScene)
