@@ -15,7 +15,7 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	if progress_bars.sanity_bar.value <= 0:
+	if progress_bars.sanity_bar.value <= 0 or progress_bars.suspect_bar.value <= 0:
 		if (not sound.is_playing()):
 			sound.play()
 		else:

@@ -146,7 +146,9 @@ text = "COLD"
 stream = ExtResource( 9 )
 
 [connection signal="input_event" from="Level1/Player" to="Level1/Player" method="_on_Player_input_event"]
+[connection signal="radio_playing" from="Level1/Scenery/Radio" to="Level1/Scenery/Washing_Machine" method="_on_Radio_radio_playing"]
 [connection signal="radio_playing" from="Level1/Scenery/Radio" to="HUD" method="_on_Radio_radio_playing"]
+[connection signal="washing_machine_using" from="Level1/Scenery/Washing_Machine" to="Level1/Scenery/Radio" method="_on_Washing_Machine_washing_machine_using"]
 [connection signal="washing_machine_using" from="Level1/Scenery/Washing_Machine" to="HUD" method="_on_Washing_Machine_washing_machine_using"]
 [connection signal="timeout" from="HUD/Sanity/Sanity_Timer" to="HUD" method="_on_Sanity_Timer_timeout"]
 [connection signal="timeout" from="HUD/Suspect/Suspect_Timer" to="HUD" method="_on_Suspect_Timer_timeout"]

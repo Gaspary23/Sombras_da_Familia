@@ -20,3 +20,9 @@ func _on_Radio_body_entered(_body: Node) -> void:
 
 func _on_Radio_body_exited(_body: Node) -> void:
 	touchingPlayer = false
+
+
+func _on_Washing_Machine_washing_machine_using() -> void:
+	if sound.is_playing():
+		emit_signal("radio_playing")
+		sound.stop()
