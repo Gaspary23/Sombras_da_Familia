@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Levels/Level1.tscn" type="PackedScene" id=1]
 [ext_resource path="res://GFX/Under.png" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Player/char.png" type="Texture" id=7]
 [ext_resource path="res://Game/NPC.gd" type="Script" id=8]
 [ext_resource path="res://SFX/game_over_sound.mp3" type="AudioStream" id=9]
+[ext_resource path="res://GFX/Over_Sus.png" type="Texture" id=10]
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
@@ -90,11 +91,31 @@ texture_progress = ExtResource( 3 )
 [node name="Sanity_Timer" type="Timer" parent="HUD/Sanity"]
 autostart = true
 
+[node name="Suspect" type="Control" parent="HUD"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Suspect_Progress" type="TextureProgress" parent="HUD/Suspect"]
+margin_left = 1.0
+margin_top = 57.0
+margin_right = 301.0
+margin_bottom = 107.0
+value = 100.0
+texture_under = ExtResource( 2 )
+texture_over = ExtResource( 6 )
+texture_progress = ExtResource( 10 )
+
+[node name="Suspect_Timer" type="Timer" parent="HUD/Suspect"]
+autostart = true
+
 [node name="gameOverSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 9 )
 
 [connection signal="input_event" from="Level1/Player" to="Level1/Player" method="_on_Player_input_event"]
+[connection signal="radio_playing" from="Level1/Scenery/Radio" to="Level1/Scenery/Washing_Machine" method="_on_Radio_radio_playing"]
 [connection signal="radio_playing" from="Level1/Scenery/Radio" to="HUD" method="_on_Radio_radio_playing"]
+[connection signal="washing_machine_using" from="Level1/Scenery/Washing_Machine" to="HUD" method="_on_Washing_Machine_washing_machine_using"]
 [connection signal="timeout" from="HUD/Sanity/Sanity_Timer" to="HUD" method="_on_Sanity_Timer_timeout"]
+[connection signal="timeout" from="HUD/Suspect/Suspect_Timer" to="HUD" method="_on_Suspect_Timer_timeout"]
 
 [editable path="Level1"]
