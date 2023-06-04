@@ -1,10 +1,12 @@
 extends CanvasLayer
 
+var due_delta = -1
+
 onready var sanity_bar = $Sanity/Sanity_Progress
-var sanity_delta = -1
+var sanity_delta = due_delta
 
 onready var suspect_bar = $Suspect/Suspect_Progress
-var suspect_delta = -1
+var suspect_delta = due_delta
 
 
 func _on_Sanity_Timer_timeout() -> void:
