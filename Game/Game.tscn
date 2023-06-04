@@ -145,6 +145,7 @@ text = "COLD"
 [node name="gameOverSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 9 )
 
+[connection signal="increase_difficulty" from="." to="HUD" method="_on_Game_increase_difficulty"]
 [connection signal="input_event" from="Level1/Player" to="Level1/Player" method="_on_Player_input_event"]
 [connection signal="radio_playing" from="Level1/Scenery/Radio" to="Level1/Scenery/Washing_Machine" method="_on_Radio_radio_playing"]
 [connection signal="radio_playing" from="Level1/Scenery/Radio" to="HUD" method="_on_Radio_radio_playing"]

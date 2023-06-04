@@ -23,3 +23,9 @@ func _on_Suspect_Timer_timeout() -> void:
 
 func _on_Washing_Machine_washing_machine_using() -> void:
 	suspect_delta *= -1
+
+
+func _on_Game_increase_difficulty() -> void:
+	due_delta *= 2
+	sanity_delta = due_delta
+	suspect_delta = due_delta
