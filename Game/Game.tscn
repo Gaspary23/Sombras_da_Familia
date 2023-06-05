@@ -122,6 +122,7 @@ margin_right = 300.0
 text = "SUSPECT"
 
 [node name="Cold" type="Control" parent="HUD"]
+visible = false
 margin_right = 40.0
 margin_bottom = 40.0
 

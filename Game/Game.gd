@@ -3,16 +3,15 @@ extends Node2D
 var player : KinematicBody2D
 var progress_bars : CanvasLayer
 
-var currentScene = null
-
 onready var sound = $gameOverSound
 
+var currentScene = null
 var time_start = 0
 var time_now = 0
 
 var count_time = true
 signal increase_difficulty
-var increment_time_value = 60
+var increment_time_value = 20
 
 func _ready() -> void:
 	time_start = OS.get_unix_time()

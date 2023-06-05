@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-var due_delta = -1
+var due_delta = -5
 
 onready var sanity_bar = $Sanity/Sanity_Progress
 var sanity_delta = due_delta
@@ -26,6 +26,5 @@ func _on_Washing_Machine_washing_machine_using() -> void:
 
 
 func _on_Game_increase_difficulty() -> void:
-	due_delta *= 2
-	sanity_delta = due_delta
-	suspect_delta = due_delta
+	sanity_delta *= 2
+	suspect_delta *= 2
