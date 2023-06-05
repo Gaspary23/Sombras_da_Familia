@@ -17,7 +17,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "States",
 "language": "GDScript",
-"path": "res://StateMachine.gd"
+"path": "res://NPC/StateMachine.gd"
 } ]
 _global_script_class_icons={
 "Player": "",

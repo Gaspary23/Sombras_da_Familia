@@ -35,7 +35,7 @@ func _physics_process(_delta: float) -> void:
 			sound.play()
 		else:
 			sound.stop()
-		get_tree().change_scene("res://GameOver.tscn")
+		get_tree().change_scene("res://Game/GameOver.tscn")
 
 
 func goto_scene(path: String):
