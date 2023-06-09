@@ -13,7 +13,7 @@ extents = Vector2( 513.5, 20 )
 [node name="Level1" type="Node"]
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
-position = Vector2( 527, 536 )
+position = Vector2( 517, 566 )
 
 [node name="Scenery" type="Node" parent="."]
 
@@ -34,10 +34,10 @@ position = Vector2( -0.5, 0 )
 shape = SubResource( 1 )
 
 [node name="Radio" parent="Scenery" instance=ExtResource( 1 )]
-position = Vector2( 131, 0 )
+position = Vector2( 335, 535 )
 
 [node name="Washing_Machine" parent="Scenery" instance=ExtResource( 2 )]
-position = Vector2( -246, 0 )
+position = Vector2( 707, 538 )
 z_index = -1
 
 [node name="Wardrobe" parent="Scenery" instance=ExtResource( 5 )]

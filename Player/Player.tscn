@@ -108,7 +108,7 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 16, 28.75 )
+extents = Vector2( 16, 29.375 )
 
 [node name="Player" type="KinematicBody2D"]
 collision_mask = 5
@@ -117,10 +117,11 @@ script = ExtResource( 2 )
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 18 )
 animation = "down"
+offset = Vector2( 0, -32 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-position = Vector2( -0.5, 1.5 )
+position = Vector2( -0.5, -31.375 )
 shape = SubResource( 1 )
 
 [node name="Door" type="AudioStreamPlayer" parent="."]
