@@ -63,7 +63,10 @@ scale = Vector2( 3.44932, 1 )
 position = Vector2( 7.5, -0.5 )
 
 [node name="Washing_Machine" parent="Level1/Scenery" index="2"]
-position = Vector2( -293, -3 )
+position = Vector2( -239, -6 )
+
+[node name="Position2D" type="Position2D" parent="Level1/Scenery/Washing_Machine" index="3"]
+position = Vector2( 969, 535 )
 
 [node name="NPC" type="KinematicBody2D" parent="Level1"]
 visible = false
@@ -83,8 +86,10 @@ margin_right = 40.0
 margin_bottom = 40.0
 
 [node name="Sanity_Progress" type="TextureProgress" parent="HUD/Sanity"]
-margin_right = 300.0
-margin_bottom = 50.0
+margin_left = 3.0
+margin_top = 16.0
+margin_right = 303.0
+margin_bottom = 66.0
 value = 100.0
 texture_under = ExtResource( 2 )
 texture_over = ExtResource( 6 )

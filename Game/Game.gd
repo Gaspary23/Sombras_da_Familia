@@ -8,6 +8,7 @@ onready var sound = $gameOverSound
 var currentScene = null
 var time_start = 0
 var time_now = 0
+var WMPos = $Level1/Scenery/Washing_Machine.position
 
 var count_time = true
 signal increase_difficulty
