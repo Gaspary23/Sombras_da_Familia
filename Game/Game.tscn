@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Levels/Level1.tscn" type="PackedScene" id=1]
 [ext_resource path="res://GFX/Under.png" type="Texture" id=2]
@@ -6,41 +6,10 @@
 [ext_resource path="res://Game/HUD.gd" type="Script" id=4]
 [ext_resource path="res://Game/Game.gd" type="Script" id=5]
 [ext_resource path="res://GFX/Over.png" type="Texture" id=6]
-[ext_resource path="res://Player/char.png" type="Texture" id=7]
-[ext_resource path="res://Game/NPC.gd" type="Script" id=8]
+[ext_resource path="res://Game/NPC.tscn" type="PackedScene" id=7]
 [ext_resource path="res://SFX/game_over_sound.mp3" type="AudioStream" id=9]
 [ext_resource path="res://GFX/Over_Sus.png" type="Texture" id=10]
 [ext_resource path="res://GFX/Over_Cold.png" type="Texture" id=11]
-
-[sub_resource type="AtlasTexture" id=1]
-flags = 4
-atlas = ExtResource( 7 )
-region = Rect2( 0, 0, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=2]
-flags = 4
-atlas = ExtResource( 7 )
-region = Rect2( 64, 0, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=3]
-flags = 4
-atlas = ExtResource( 7 )
-region = Rect2( 128, 0, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=4]
-flags = 4
-atlas = ExtResource( 7 )
-region = Rect2( 192, 0, 64, 64 )
-
-[sub_resource type="SpriteFrames" id=5]
-animations = [ {
-"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
-"loop": true,
-"name": "default",
-"speed": 5.0
-} ]
-
-[sub_resource type="RectangleShape2D" id=6]
 
 [node name="Game" type="Node2D"]
 position = Vector2( 1, 0 )
@@ -68,15 +37,18 @@ position = Vector2( -239, -6 )
 [node name="Position2D" type="Position2D" parent="Level1/Scenery/Washing_Machine" index="3"]
 position = Vector2( 969, 535 )
 
-[node name="NPC" type="KinematicBody2D" parent="Level1"]
+[node name="NPC" parent="Level1/Scenery" index="5" instance=ExtResource( 7 )]
+position = Vector2( 230, 530 )
+
+[node name="NPC2" parent="Level1/Scenery" index="6" instance=ExtResource( 7 )]
+position = Vector2( 305, 536 )
+
+[node name="NPC3" parent="Level1/Scenery" index="7" instance=ExtResource( 7 )]
+position = Vector2( 662, 533 )
+
+[node name="NPC" parent="." instance=ExtResource( 7 )]
 visible = false
-script = ExtResource( 8 )
-
-[node name="AnimatedSprite" type="AnimatedSprite" parent="Level1/NPC"]
-frames = SubResource( 5 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Level1/NPC"]
-shape = SubResource( 6 )
+position = Vector2( 232, 533 )
 
 [node name="HUD" type="CanvasLayer" parent="." groups=["HUD"]]
 script = ExtResource( 4 )

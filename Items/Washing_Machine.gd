@@ -3,7 +3,7 @@ extends Area2D
 signal washing_machine_using
 onready var sound = $Washing
 var touchingPlayer = false
-var my_nodes_local_position = $MyNode.position
+onready var my_nodes_local_position = position
 
 
 func _process(_delta: float) -> void:

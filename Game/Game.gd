@@ -8,7 +8,8 @@ onready var sound = $gameOverSound
 var currentScene = null
 var time_start = 0
 var time_now = 0
-var WMPos = $Level1/Scenery/Washing_Machine.position
+var boolean = true
+
 
 var count_time = true
 signal increase_difficulty
@@ -22,6 +23,14 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
+	var WMPos = $Level1/Scenery/Washing_Machine.position
+	if (boolean == true):
+		$Level1/Scenery/NPC3.setPos(WMPos)
+		$Level1/Scenery/NPC3.scripted()
+		yield(get_tree().create_timer(1), "timeout")
+		$Level1/Scenery/NPC3.scripted()
+		boolean = false
+		
 	time_now = OS.get_unix_time()
 	var time_elapsed: int = time_now - time_start
 	if time_elapsed % increment_time_value == 0 and time_elapsed != 0 and count_time:
