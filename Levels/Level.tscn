@@ -1,0 +1,100 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://Game/NPC.gd" type="Script" id=4]
+[ext_resource path="res://Items/WorkBench.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Items/Wardrobe.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Items/Washing_Machine.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Items/Radio.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Items/Heater.tscn" type="PackedScene" id=11]
+[ext_resource path="res://GFX/tiles/grass2.png" type="Texture" id=12]
+[ext_resource path="res://Player/char.png" type="Texture" id=13]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 513.5, 20 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 192, 0, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ SubResource( 7 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=6]
+
+[node name="Level" type="Node" groups=["Level1"]]
+
+[node name="Player" parent="." instance=ExtResource( 9 )]
+position = Vector2( 253, 565 )
+
+[node name="Scenery" type="Node" parent="."]
+
+[node name="Grass" type="StaticBody2D" parent="Scenery"]
+position = Vector2( 505, 586 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Grass2" type="Sprite" parent="Scenery/Grass"]
+position = Vector2( 8.50002, 0 )
+scale = Vector2( 3.44932, 1 )
+texture = ExtResource( 12 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Scenery/Grass"]
+visible = false
+position = Vector2( 7.5, -0.5 )
+shape = SubResource( 1 )
+
+[node name="Radio" parent="Scenery" instance=ExtResource( 10 )]
+position = Vector2( 748, 532 )
+
+[node name="Washing_Machine" parent="Scenery" instance=ExtResource( 8 )]
+position = Vector2( 751, 181 )
+z_index = -1
+
+[node name="Heater" parent="Scenery" instance=ExtResource( 11 )]
+position = Vector2( 340, 536 )
+z_index = -1
+
+[node name="Wardrobe" parent="Scenery" instance=ExtResource( 7 )]
+position = Vector2( 97, 446 )
+
+[node name="WorkBench" parent="Scenery" instance=ExtResource( 6 )]
+position = Vector2( 919, 504 )
+
+[node name="NPC" type="KinematicBody2D" parent="."]
+visible = false
+script = ExtResource( 4 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="NPC"]
+frames = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC"]
+shape = SubResource( 6 )
+
+[connection signal="input_event" from="Player" to="Player" method="_on_Player_input_event"]
+[connection signal="radio_playing" from="Scenery/Radio" to="Scenery/Washing_Machine" method="_on_Radio_radio_playing"]
+[connection signal="washing_machine_using" from="Scenery/Washing_Machine" to="Scenery/Radio" method="_on_Washing_Machine_washing_machine_using"]
+[connection signal="body_entered" from="Scenery/Heater" to="Scenery/Heater" method="_on_Heater_body_entered"]
+[connection signal="body_exited" from="Scenery/Heater" to="Scenery/Heater" method="_on_Heater_body_exited"]

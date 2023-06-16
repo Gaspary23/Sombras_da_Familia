@@ -16,8 +16,6 @@ func _process(_delta: float) -> void:
 
 func _on_Heater_body_entered(body: Node) -> void:
 	touchingPlayer = true
-	print("true")
 
 func _on_Heater_body_exited(body: Node) -> void:
 	touchingPlayer = false
-	print("false")
