@@ -37,7 +37,7 @@ func _physics_process(_delta):
 			door_sound.play()
 			tween.tween_property(sprite, "visible", hidden, 0.01)
 			hidden = not hidden
-
+	
 	if(visible):
 		get_side_input()
 		motion = move_and_slide(motion, Vector2.UP)

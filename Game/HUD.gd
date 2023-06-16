@@ -4,7 +4,7 @@ onready var madness_bar = $Madness/Madness_Progress
 var madness_delta = 5
 
 onready var suspicion_bar = $Suspicion/Suspicion_Progress
-var suspicion_delta = 5
+var suspicion_delta = 0
 
 onready var coldness_bar = $Coldness/Coldness_Progress
 var coldness_delta = 5
@@ -24,7 +24,11 @@ func _on_Coldness_Timer_timeout() -> void:
 
 func _on_Radio_radio_playing():
 	madness_delta *= -1
-	
+
+
+func _on_Heater_heater_on() -> void:
+	coldness_delta *= -1
+
 
 func _on_Washing_Machine_washing_machine_using() -> void:
 	madness_delta *= -1
