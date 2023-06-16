@@ -81,69 +81,67 @@ shape = SubResource( 6 )
 [node name="HUD" type="CanvasLayer" parent="." groups=["HUD"]]
 script = ExtResource( 4 )
 
-[node name="Sanity" type="Control" parent="HUD"]
+[node name="Madness" type="Control" parent="HUD"]
 margin_right = 40.0
 margin_bottom = 40.0
 
-[node name="Sanity_Progress" type="TextureProgress" parent="HUD/Sanity"]
+[node name="Madness_Progress" type="TextureProgress" parent="HUD/Madness"]
 margin_right = 300.0
 margin_bottom = 50.0
-value = 100.0
 texture_under = ExtResource( 2 )
 texture_over = ExtResource( 6 )
 texture_progress = ExtResource( 3 )
 
-[node name="Sanity_Timer" type="Timer" parent="HUD/Sanity"]
+[node name="Madness_Timer" type="Timer" parent="HUD/Madness"]
 autostart = true
 
-[node name="Sanity_Label" type="Label" parent="HUD/Sanity"]
+[node name="Madness_Label" type="Label" parent="HUD/Madness"]
 margin_left = 305.0
 margin_top = 20.0
 margin_right = 300.0
-text = "SANITY"
+text = "MADNESS"
 
-[node name="Suspect" type="Control" parent="HUD"]
+[node name="Suspicion" type="Control" parent="HUD"]
 margin_right = 40.0
 margin_bottom = 40.0
 
-[node name="Suspect_Progress" type="TextureProgress" parent="HUD/Suspect"]
+[node name="Suspicion_Progress" type="TextureProgress" parent="HUD/Suspicion"]
 margin_top = 60.0
 margin_right = 300.0
 margin_bottom = 50.0
-value = 100.0
 texture_under = ExtResource( 2 )
 texture_over = ExtResource( 6 )
 texture_progress = ExtResource( 10 )
 
-[node name="Suspect_Timer" type="Timer" parent="HUD/Suspect"]
+[node name="Suspicion_Timer" type="Timer" parent="HUD/Suspicion"]
 autostart = true
 
-[node name="Suspect_Label" type="Label" parent="HUD/Suspect"]
+[node name="Suspicion_Label" type="Label" parent="HUD/Suspicion"]
 margin_left = 305.0
 margin_top = 80.0
 margin_right = 300.0
-text = "SUSPECT"
+text = "SUSPICION"
 
-[node name="Cold" type="Control" parent="HUD"]
+[node name="Coldness" type="Control" parent="HUD"]
 margin_right = 40.0
 margin_bottom = 40.0
 
-[node name="Cold_Progress" type="TextureProgress" parent="HUD/Cold"]
+[node name="Coldness_Progress" type="TextureProgress" parent="HUD/Coldness"]
 margin_top = 120.0
 margin_right = 300.0
 margin_bottom = 50.0
-value = 100.0
 texture_under = ExtResource( 2 )
 texture_over = ExtResource( 6 )
 texture_progress = ExtResource( 11 )
 
-[node name="Cold_Timer" type="Timer" parent="HUD/Cold"]
+[node name="Coldness_Timer" type="Timer" parent="HUD/Coldness"]
+autostart = true
 
-[node name="Cold_Label" type="Label" parent="HUD/Cold"]
+[node name="Coldness_Label" type="Label" parent="HUD/Coldness"]
 margin_left = 305.0
 margin_top = 140.0
 margin_right = 300.0
-text = "COLD"
+text = "COLDNESS"
 
 [node name="gameOverSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 9 )
@@ -154,7 +152,8 @@ stream = ExtResource( 9 )
 [connection signal="radio_playing" from="Level1/Scenery/Radio" to="HUD" method="_on_Radio_radio_playing"]
 [connection signal="washing_machine_using" from="Level1/Scenery/Washing_Machine" to="Level1/Scenery/Radio" method="_on_Washing_Machine_washing_machine_using"]
 [connection signal="washing_machine_using" from="Level1/Scenery/Washing_Machine" to="HUD" method="_on_Washing_Machine_washing_machine_using"]
-[connection signal="timeout" from="HUD/Sanity/Sanity_Timer" to="HUD" method="_on_Sanity_Timer_timeout"]
-[connection signal="timeout" from="HUD/Suspect/Suspect_Timer" to="HUD" method="_on_Suspect_Timer_timeout"]
+[connection signal="timeout" from="HUD/Madness/Madness_Timer" to="HUD" method="_on_Madness_Timer_timeout"]
+[connection signal="timeout" from="HUD/Suspicion/Suspicion_Timer" to="HUD" method="_on_Suspicion_Timer_timeout"]
+[connection signal="timeout" from="HUD/Coldness/Coldness_Timer" to="HUD" method="_on_Coldness_Timer_timeout"]
 
 [editable path="Level1"]

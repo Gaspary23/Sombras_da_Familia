@@ -1,30 +1,36 @@
 extends CanvasLayer
 
-var due_delta = -5
+onready var madness_bar = $Madness/Madness_Progress
+var madness_delta = 5
 
-onready var sanity_bar = $Sanity/Sanity_Progress
-var sanity_delta = due_delta
+onready var suspicion_bar = $Suspicion/Suspicion_Progress
+var suspicion_delta = 5
 
-onready var suspect_bar = $Suspect/Suspect_Progress
-var suspect_delta = due_delta
+onready var coldness_bar = $Coldness/Coldness_Progress
+var coldness_delta = 5
 
 
-func _on_Sanity_Timer_timeout() -> void:
-	sanity_bar.value += sanity_delta
+func _on_Madness_Timer_timeout() -> void:
+	madness_bar.value += madness_delta
+
+
+func _on_Suspicion_Timer_timeout() -> void:
+	suspicion_bar.value += suspicion_delta
+
+
+func _on_Coldness_Timer_timeout() -> void:
+	coldness_bar.value += coldness_delta
 
 
 func _on_Radio_radio_playing():
-	sanity_delta *= -1
-
-
-func _on_Suspect_Timer_timeout() -> void:
-	suspect_bar.value += suspect_delta
-
+	madness_delta *= -1
+	
 
 func _on_Washing_Machine_washing_machine_using() -> void:
-	suspect_delta *= -1
+	madness_delta *= -1
 
 
 func _on_Game_increase_difficulty() -> void:
-	sanity_delta *= 2
-	suspect_delta *= 2
+	madness_delta *= 2
+	suspicion_delta *= 2
+	coldness_delta *= 2

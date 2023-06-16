@@ -35,14 +35,9 @@ func _physics_process(_delta):
 		squash_and_stretch()
 		if(is_on_wall()):
 			door_sound.play()
-			print(hidden)
+			tween.tween_property(sprite, "visible", hidden, 0.01)
 			hidden = not hidden
-			print(hidden, "\n")
-			tween.tween_property(sprite, "visible", hidden, 0.1)
-	
-	if(not hidden):
-		visible = true
+
+	if(visible):
 		get_side_input()
 		motion = move_and_slide(motion, Vector2.UP)
-	else:
-		visible = false
