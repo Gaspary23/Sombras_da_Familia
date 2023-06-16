@@ -24,11 +24,9 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	var WMPos = $Level1/Scenery/Washing_Machine.position
+	$Level1/Scenery/NPC3.scripted()
 	if (boolean == true):
 		$Level1/Scenery/NPC3.setPos(WMPos)
-		$Level1/Scenery/NPC3.scripted()
-		yield(get_tree().create_timer(1), "timeout")
-		$Level1/Scenery/NPC3.scripted()
 		boolean = false
 		
 	time_now = OS.get_unix_time()

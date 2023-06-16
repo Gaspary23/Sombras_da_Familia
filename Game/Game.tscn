@@ -18,7 +18,7 @@ script = ExtResource( 5 )
 [node name="Level1" parent="." groups=["Level1"] instance=ExtResource( 1 )]
 
 [node name="Player" parent="Level1" index="0"]
-position = Vector2( 532, 533 )
+position = Vector2( 799, 533 )
 collision_mask = 1
 
 [node name="Grass" parent="Level1/Scenery" index="0"]
@@ -32,19 +32,19 @@ scale = Vector2( 3.44932, 1 )
 position = Vector2( 7.5, -0.5 )
 
 [node name="Washing_Machine" parent="Level1/Scenery" index="2"]
-position = Vector2( -239, -6 )
+position = Vector2( -239, -2 )
 
 [node name="Position2D" type="Position2D" parent="Level1/Scenery/Washing_Machine" index="3"]
 position = Vector2( 969, 535 )
 
 [node name="NPC" parent="Level1/Scenery" index="5" instance=ExtResource( 7 )]
-position = Vector2( 230, 530 )
+position = Vector2( 233, 532 )
 
 [node name="NPC2" parent="Level1/Scenery" index="6" instance=ExtResource( 7 )]
-position = Vector2( 305, 536 )
+position = Vector2( 194, 532 )
 
 [node name="NPC3" parent="Level1/Scenery" index="7" instance=ExtResource( 7 )]
-position = Vector2( 662, 533 )
+position = Vector2( 604, 532 )
 
 [node name="NPC" parent="." instance=ExtResource( 7 )]
 visible = false

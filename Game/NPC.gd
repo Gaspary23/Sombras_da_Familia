@@ -31,24 +31,26 @@ func scripted():
 		currentState = State.walking
 		print(currentState)
 	elif(currentState	== State.action):
-		yield(get_tree().create_timer(5), "timeout")
+		yield(get_tree().create_timer(2), "timeout")
 		standBy = true
 		targetPos = initialPos
 		self.currentState == State.walking
 	elif(currentState	== State.checking):
 		print("DIE!!")
 	elif(currentState	== State.walking):
-		print("DIE!!")
-		print(targetPos)
-		print(currentPos.x)
+		print(targetPos.y)
+		print(currentPos.y)
+		currentPos = position
 		velocity.x = (targetPos.x - currentPos.x)/5
-		print(velocity.x)
-		while(targetPos != currentPos):
+		if(targetPos.x != currentPos.x):
 			self.moveToObject()
-			if(targetPos == currentPos && standBy == false):
-				self.currentState == State.action 
-			if(targetPos == currentPos && standBy == true):
-				self.currentState == State.waiting 
+		if(targetPos.x == currentPos.x && standBy == false):
+			print("Cheguei Aqui")
+			self.currentState == State.action 
+		if(targetPos.x == currentPos.x && standBy == true):
+			print("Cheguei Aqui2")
+			self.currentState == State.waiting 
+				
 
 	
 	
