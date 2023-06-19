@@ -14,8 +14,8 @@ func _process(_delta: float) -> void:
 #			sound.stop()
 
 
-func _on_Heater_body_entered(body: Node) -> void:
+func _on_Heater_body_entered(_body: Node) -> void:
 	touchingPlayer = true
 
-func _on_Heater_body_exited(body: Node) -> void:
+func _on_Heater_body_exited(_body: Node) -> void:
 	touchingPlayer = false

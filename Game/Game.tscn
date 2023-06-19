@@ -85,6 +85,11 @@ text = "COLDNESS"
 stream = ExtResource( 9 )
 
 [connection signal="increase_difficulty" from="." to="HUD" method="_on_Game_increase_difficulty"]
+[connection signal="radio_playing" from="Level/Scenery/Radio" to="HUD" method="_on_Radio_radio_playing"]
+[connection signal="washing_machine_using" from="Level/Scenery/Washing_Machine" to="HUD" method="_on_Washing_Machine_washing_machine_using"]
+[connection signal="heater_on" from="Level/Scenery/Heater" to="HUD" method="_on_Heater_heater_on"]
 [connection signal="timeout" from="HUD/Madness/Madness_Timer" to="HUD" method="_on_Madness_Timer_timeout"]
 [connection signal="timeout" from="HUD/Suspicion/Suspicion_Timer" to="HUD" method="_on_Suspicion_Timer_timeout"]
 [connection signal="timeout" from="HUD/Coldness/Coldness_Timer" to="HUD" method="_on_Coldness_Timer_timeout"]
+
+[editable path="Level"]

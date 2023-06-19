@@ -6,6 +6,7 @@
 extents = Vector2( 72.5, 119.5 )
 
 [node name="Wardrobe" type="KinematicBody2D"]
+scale = Vector2( 0.75, 0.75 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
