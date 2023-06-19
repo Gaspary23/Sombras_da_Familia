@@ -4,6 +4,7 @@ var player : KinematicBody2D
 var progress_bars : CanvasLayer
 
 onready var game_over_sound = $gameOverSound
+onready var NPC = $Level/NPC
 
 var currentScene = null
 var time_start = 0
@@ -23,10 +24,10 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	var WMPos = $Level1/Scenery/Washing_Machine.position
-	$Level1/Scenery/NPC3.scripted()
+	var WMPos = $Level/Scenery/Washing_Machine.position
+	NPC.scripted()
 	if (boolean == true):
-		$Level1/Scenery/NPC3.setPos(WMPos)
+		NPC.setPos(WMPos)
 		boolean = false
 		
 	time_now = OS.get_unix_time()

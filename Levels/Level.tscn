@@ -1,6 +1,6 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://Game/NPC.gd" type="Script" id=4]
+[ext_resource path="res://NPC/NPC.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Items/WorkBench.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Items/Wardrobe.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Items/Washing_Machine.tscn" type="PackedScene" id=8]
@@ -8,45 +8,14 @@
 [ext_resource path="res://Items/Radio.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Items/Heater.tscn" type="PackedScene" id=11]
 [ext_resource path="res://GFX/tiles/grass2.png" type="Texture" id=12]
-[ext_resource path="res://Player/char.png" type="Texture" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 513.5, 20 )
 
-[sub_resource type="AtlasTexture" id=7]
-flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 0, 0, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=2]
-flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 64, 0, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=3]
-flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 128, 0, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=4]
-flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 192, 0, 64, 64 )
-
-[sub_resource type="SpriteFrames" id=5]
-animations = [ {
-"frames": [ SubResource( 7 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
-"loop": true,
-"name": "default",
-"speed": 5.0
-} ]
-
-[sub_resource type="RectangleShape2D" id=6]
-
 [node name="Level" type="Node" groups=["Level1"]]
 
 [node name="Player" parent="." instance=ExtResource( 9 )]
-position = Vector2( 253, 565 )
+position = Vector2( 825, 327 )
 
 [node name="Scenery" type="Node" parent="."]
 
@@ -67,10 +36,10 @@ position = Vector2( 7.5, -0.5 )
 shape = SubResource( 1 )
 
 [node name="Radio" parent="Scenery" instance=ExtResource( 10 )]
-position = Vector2( 748, 532 )
+position = Vector2( 749, 533 )
 
 [node name="Washing_Machine" parent="Scenery" instance=ExtResource( 8 )]
-position = Vector2( 751, 181 )
+position = Vector2( 744, 140 )
 z_index = -1
 
 [node name="Heater" parent="Scenery" instance=ExtResource( 11 )]
@@ -81,17 +50,10 @@ z_index = -1
 position = Vector2( 70, 474 )
 
 [node name="WorkBench" parent="Scenery" instance=ExtResource( 6 )]
-position = Vector2( 919, 504 )
+position = Vector2( 940, 350 )
 
-[node name="NPC" type="KinematicBody2D" parent="."]
-visible = false
-script = ExtResource( 4 )
-
-[node name="AnimatedSprite" type="AnimatedSprite" parent="NPC"]
-frames = SubResource( 5 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC"]
-shape = SubResource( 6 )
+[node name="NPC" parent="." instance=ExtResource( 1 )]
+position = Vector2( 226, 533 )
 
 [connection signal="input_event" from="Player" to="Player" method="_on_Player_input_event"]
 [connection signal="radio_playing" from="Scenery/Radio" to="Scenery/Washing_Machine" method="_on_Radio_radio_playing"]
