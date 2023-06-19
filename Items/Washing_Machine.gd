@@ -3,6 +3,7 @@ extends Area2D
 signal washing_machine_using
 onready var sound = $Washing
 var touchingPlayer = false
+onready var my_nodes_local_position = position
 
 
 func _process(_delta: float) -> void:
@@ -14,7 +15,9 @@ func _process(_delta: float) -> void:
 			sound.stop()
 
 
-func _on_Washing_Machine_body_entered(_body: Node) -> void:
+func _on_Washing_Machine_body_entered(body: Node) -> void:
+	if(body.name == "NPC"):
+		emit_signal("washing_machine_using")
 	touchingPlayer = true
 
 
