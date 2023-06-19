@@ -1,6 +1,9 @@
 extends Area2D
 
 signal radio_playing
+
+
+onready var sprite = $AnimatedSprite
 onready var sound = $Monster_Theme
 var touchingPlayer = false
 
@@ -10,8 +13,10 @@ func _process(_delta: float) -> void:
 		emit_signal("radio_playing")
 		if (not sound.is_playing()):
 			sound.play()
+			sprite.play("On")
 		else:
 			sound.stop()
+			sprite.play("Off")
 
 
 func _on_Radio_body_entered(_body: Node) -> void:

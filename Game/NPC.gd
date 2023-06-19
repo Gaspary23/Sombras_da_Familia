@@ -24,7 +24,6 @@ func moveToObject():
 
 
 func scripted():
-	print(self.currentState)
 	if (levelOfSuspission > 30):
 		self.currentState = State.checking
 	elif(currentState == State.waiting):
