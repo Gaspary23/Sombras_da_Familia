@@ -24,6 +24,7 @@ func moveToObject():
 
 
 func scripted():
+	print(self.currentState)
 	if (levelOfSuspission > 30):
 		self.currentState = State.checking
 	elif(currentState == State.waiting):
@@ -41,19 +42,16 @@ func scripted():
 		print("DIE!!")
 	elif(currentState == State.walking):
 		currentPos = position
-		#print (currentPos)
 		if targetPos.x - currentPos.x > 0:
 			velocity.x = 1
 		elif targetPos.x - currentPos.x < 0:
 			velocity.x = -1
 		else:
 			velocity.x = 0
-		#velocity =  targetPos - initialPos
 		velocity.x *= speed
-		#print(velocity)
 		if(targetPos.x != currentPos.x):
 			self.moveToObject()
-		if(targetPos.x == currentPos.x && standBy == false):
-			self.currentState == State.action 
-		if(targetPos.x == currentPos.x && standBy == true):
-			self.currentState == State.waiting 
+		if((currentPos.x < targetPos.x + 3 and currentPos.x > targetPos.x - 3) and standBy == false):
+			self.currentState = State.action 
+		if((currentPos.x < targetPos.x + 3 and currentPos.x > targetPos.x - 3) and standBy == true):
+			self.currentState = State.waiting 
