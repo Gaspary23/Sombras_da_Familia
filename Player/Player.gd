@@ -5,38 +5,39 @@ export (int) var speed := 200
 
 onready var target = position
 onready var sprite = $Sprite
-onready var sound = $Door
-
-var playDoor = true
-var velocity = Vector2.ZERO
-var rotation_dir = 0
+onready var door_sound = $Door
+var motion = Vector2.ZERO
+var hidden = false
+var tween
 
 
 func get_side_input():
-	velocity.x = Input.get_action_strength("right")-Input.get_action_strength("left")
-	velocity.x *= speed
-	if velocity.x > 0:
+	motion.x = Input.get_action_strength("right")-Input.get_action_strength("left")
+	motion.x *= speed
+	if motion.x > 0:
 		sprite.play("right")
-	elif velocity.x < 0:
+	elif motion.x < 0:
 		sprite.play("left")
 	else:
 		sprite.stop()
+		sprite.play("down")
 		sprite.frame = 0
 
 
+func squash_and_stretch():
+	tween = create_tween()
+	tween.tween_property(sprite, "scale", Vector2(1.25,0.75), 0.1)
+	tween.tween_property(sprite, "scale", Vector2(1,1), 0.1)
+
+
 func _physics_process(_delta):
-	if (is_on_wall() and Input.is_action_just_pressed("interact")):
-		if (not sound.is_playing() and playDoor):
-			sound.play()
-			playDoor = false
-		else:
-			sound.stop()
-			
-		visible = not visible
-		if(visible):
-			sound.play()
-	if (visible):
-		playDoor = true
-		get_side_input()
-		velocity = move_and_slide(velocity, Vector2.UP)
+	if (Input.is_action_just_pressed("interact")):
+		squash_and_stretch()
+		if(is_on_wall()):
+			door_sound.play()
+			tween.tween_property(sprite, "visible", hidden, 0.01)
+			hidden = not hidden
 	
+	if(visible):
+		get_side_input()
+		motion = move_and_slide(motion, Vector2.UP)

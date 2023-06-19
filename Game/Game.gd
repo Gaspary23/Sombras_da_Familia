@@ -3,7 +3,7 @@ extends Node2D
 var player : KinematicBody2D
 var progress_bars : CanvasLayer
 
-onready var sound = $gameOverSound
+onready var game_over_sound = $gameOverSound
 
 var currentScene = null
 var time_start = 0
@@ -38,11 +38,14 @@ func _physics_process(_delta: float) -> void:
 	if time_elapsed % increment_time_value != 0 and !count_time:
 		count_time = true
 	
-	if progress_bars.sanity_bar.value <= 0 or progress_bars.suspect_bar.value <= 0:
-		if (not sound.is_playing()):
-			sound.play()
+	if (progress_bars.madness_bar.value >= 100 
+	or progress_bars.suspicion_bar.value >= 100 
+	or progress_bars.coldness_bar.value >= 100):
+		
+		if (not game_over_sound.is_playing()):
+			game_over_sound.play()
 		else:
-			sound.stop()
+			game_over_sound.stop()
 		get_tree().change_scene("res://Game/GameOver.tscn")
 
 
