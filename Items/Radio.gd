@@ -2,7 +2,6 @@ extends Area2D
 
 signal radio_playing
 
-
 onready var sprite = $AnimatedSprite
 onready var sound = $Monster_Theme
 var touchingPlayer = false
