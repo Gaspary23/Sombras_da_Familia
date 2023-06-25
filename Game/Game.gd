@@ -5,6 +5,7 @@ var progress_bars : CanvasLayer
 
 onready var game_over_sound = $gameOverSound
 onready var NPC = $Level/NPC
+onready var WM = $Level/Scenery/Washing_Machine
 
 var currentScene = null
 var time_start = 0
@@ -16,11 +17,17 @@ var count_time = true
 signal increase_difficulty
 var increment_time_value = 20
 
+func _check() -> void:
+	if(NPC.currentPos.x < NPC.objPos.x + 3 and NPC.currentPos.x > NPC.objPos.x - 3 and WM.WMon):
+		NPC.levelOfSuspission += 0.2
+		
+
 func _ready() -> void:
 	time_start = OS.get_unix_time()
 	currentScene = get_child(0) # pega o Level1, etc
 	player = currentScene.get_node("Player")
 	progress_bars = get_node("HUD")
+	NPC.setInitialPos(NPC.position)
 
 
 func _physics_process(_delta: float) -> void:
@@ -39,6 +46,7 @@ func _physics_process(_delta: float) -> void:
 	if time_elapsed % increment_time_value != 0 and !count_time:
 		count_time = true
 	
+	_check()
 	# Check Game Over
 	if (progress_bars.madness_bar.value >= 100 
 	or progress_bars.suspicion_bar.value >= 100 

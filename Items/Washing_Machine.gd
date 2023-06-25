@@ -4,13 +4,15 @@ signal washing_machine_using
 
 onready var sprite = $AnimatedSprite
 onready var sound = $Washing
-var touchingPlayer = false
+var touchingPlayer = true
+var WMon = true
 onready var my_nodes_local_position = position
 
 
 func _process(_delta: float) -> void:
 	if (Input.is_action_just_pressed("interact") and touchingPlayer):
 		emit_signal("washing_machine_using")
+		WMon = not WMon
 		if (not sound.is_playing()):
 			sound.play()
 			sprite.play("On")
