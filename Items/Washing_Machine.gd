@@ -1,6 +1,8 @@
 extends Area2D
 
 signal washing_machine_using
+
+onready var sprite = $AnimatedSprite
 onready var sound = $Washing
 var touchingPlayer = false
 onready var my_nodes_local_position = position
@@ -11,8 +13,10 @@ func _process(_delta: float) -> void:
 		emit_signal("washing_machine_using")
 		if (not sound.is_playing()):
 			sound.play()
+			sprite.play("On")
 		else:
 			sound.stop()
+			sprite.play("Off")
 
 
 func _on_Washing_Machine_body_entered(body: Node) -> void:
