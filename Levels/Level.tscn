@@ -39,14 +39,14 @@ position = Vector2( 7.5, -0.5 )
 shape = SubResource( 1 )
 
 [node name="Radio" parent="Scenery" instance=ExtResource( 10 )]
-position = Vector2( 746, 536 )
+position = Vector2( 488, 529 )
 
 [node name="Washing_Machine" parent="Scenery" instance=ExtResource( 8 )]
-position = Vector2( 744, 140 )
+position = Vector2( 715, 529 )
 z_index = -1
 
 [node name="Heater" parent="Scenery" instance=ExtResource( 11 )]
-position = Vector2( 340, 536 )
+position = Vector2( 333, 532 )
 z_index = -1
 
 [node name="Wardrobe" parent="Scenery" instance=ExtResource( 7 )]

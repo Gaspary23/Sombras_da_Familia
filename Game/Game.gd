@@ -47,7 +47,7 @@ func _physics_process(_delta: float) -> void:
 		count_time = true
 	
 	_check()
-	
+	# Check Game Over
 	if (progress_bars.madness_bar.value >= 100 
 	or progress_bars.suspicion_bar.value >= 100 
 	or progress_bars.coldness_bar.value >= 100):

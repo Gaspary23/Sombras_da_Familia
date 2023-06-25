@@ -1,22 +1,37 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Items/washing_machine.png" type="Texture" id=1]
+[ext_resource path="res://Items/Washing_Machine_On.png" type="Texture" id=1]
 [ext_resource path="res://SFX/Washing Machine.mp3" type="AudioStream" id=2]
 [ext_resource path="res://Items/Washing_Machine.gd" type="Script" id=3]
+[ext_resource path="res://Items/Washing_Machine_Off.png" type="Texture" id=4]
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "Off",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "On",
+"speed": 5.0
+} ]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 22, 28.25 )
+extents = Vector2( 19, 24 )
 
 [node name="Washing Machine" type="Area2D"]
 script = ExtResource( 3 )
 
-[node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 0.15, 0.15 )
-texture = ExtResource( 1 )
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 0.13, 0.13 )
+frames = SubResource( 2 )
+animation = "Off"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-position = Vector2( 0, -0.25 )
+position = Vector2( 0, 11 )
 shape = SubResource( 1 )
 
 [node name="Washing" type="AudioStreamPlayer" parent="."]
