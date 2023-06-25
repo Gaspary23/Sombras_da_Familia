@@ -1,13 +1,12 @@
 extends CanvasLayer
 
-onready var madness_bar = $Madness/Madness_Progress
-var madness_delta = 5
-
-onready var suspicion_bar = $Suspicion/Suspicion_Progress
-var suspicion_delta = 0
-
 onready var coldness_bar = $Coldness/Coldness_Progress
+onready var madness_bar = $Madness/Madness_Progress
+onready var suspicion_bar = $Suspicion/Suspicion_Progress
 var coldness_delta = 5
+var madness_delta = 5
+var suspicion_delta = 0
+var diff_increment = 1.1
 
 
 func _on_Madness_Timer_timeout() -> void:
@@ -35,6 +34,6 @@ func _on_Washing_Machine_washing_machine_using() -> void:
 
 
 func _on_Game_increase_difficulty() -> void:
-	madness_delta *= 2
-	suspicion_delta *= 2
-	coldness_delta *= 2
+	madness_delta *= diff_increment
+	suspicion_delta *= diff_increment
+	coldness_delta *= diff_increment

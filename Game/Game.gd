@@ -1,53 +1,52 @@
 extends Node2D
 
-var player : KinematicBody2D
-var progress_bars : CanvasLayer
+signal increase_difficulty
 
 onready var game_over_sound = $gameOverSound
 onready var NPC = $Level/NPC
 onready var WM = $Level/Scenery/Washing_Machine
 
-var currentScene = null
-var time_start = 0
-var time_now = 0
-var boolean = true
-
-
-var count_time = true
-signal increase_difficulty
-var increment_time_value = 20
-
-func _check() -> void:
-	if(NPC.currentPos.x < NPC.objPos.x + 3 and NPC.currentPos.x > NPC.objPos.x - 3 and WM.is_using):
-		NPC.levelOfSuspission += 0.2
-		
-
-func _ready() -> void:
-	time_start = OS.get_unix_time()
-	currentScene = get_child(0) # pega o Level1, etc
-	player = currentScene.get_node("Player")
-	progress_bars = get_node("HUD")
-	NPC.setInitialPos(NPC.position)
+var player : KinematicBody2D
+var progress_bars : CanvasLayer
+var currentScene
+var prev_time
+var inc_diff_time = 5
 
 
 func _physics_process(_delta: float) -> void:
-	var WMPos = $Level/Scenery/Washing_Machine.position
 	#NPC.scripted()
 	#if (boolean == true):
 	#	NPC.setPos(WMPos)
 	#	boolean = false
-		
-	time_now = OS.get_unix_time()
-	var time_elapsed: int = time_now - time_start
-	if time_elapsed % increment_time_value == 0 and time_elapsed != 0 and count_time:
-		count_time = false
-		emit_signal("increase_difficulty")
 	
-	if time_elapsed % increment_time_value != 0 and !count_time:
-		count_time = true
-	
+	increase_difficulty()
 	_check()
-	# Check Game Over
+	check_game_over()
+
+
+func goto_scene(path: String):
+	var world := get_child(0)
+	world.free()
+	var res := ResourceLoader.load(path)
+	currentScene = res.instance()
+	get_tree().get_root().add_child(currentScene)
+
+
+func _check():
+	if(NPC.currentPos.x < NPC.objPos.x + 3 and NPC.currentPos.x > NPC.objPos.x - 3 and WM.is_using):
+		NPC.levelOfSuspission += 0.2
+
+
+func increase_difficulty():
+	var current_time = OS.get_unix_time()
+	var elapsed_time = current_time - prev_time
+	
+	if (elapsed_time - inc_diff_time >= 0):
+		prev_time = current_time
+		emit_signal("increase_difficulty")
+
+
+func check_game_over():
 	if (progress_bars.madness_bar.value >= 100 
 	or progress_bars.suspicion_bar.value >= 100 
 	or progress_bars.coldness_bar.value >= 100):
@@ -59,9 +58,9 @@ func _physics_process(_delta: float) -> void:
 		get_tree().change_scene("res://Game/GameOver.tscn")
 
 
-func goto_scene(path: String):
-	var world := get_child(0)
-	world.free()
-	var res := ResourceLoader.load(path)
-	currentScene = res.instance()
-	get_tree().get_root().add_child(currentScene)
+func _ready():
+	prev_time = OS.get_unix_time()
+	currentScene = get_child(0) # pega o Level1, etc
+	player = currentScene.get_node("Player")
+	progress_bars = get_node("HUD")
+	NPC.setInitialPos(NPC.position)
