@@ -37,12 +37,10 @@ func state_machine():
 				motion.x = 1
 			elif targetPos.x - position.x < 0:
 				motion.x = -1
-			else:
-				motion.x = 0
 			
+			stop_close_to_target()
 			get_side_movement()
 			motion = move_and_slide(motion, Vector2.UP)
-			stop_close_to_target()
 
 		State.working: # Do work
 			yield(get_tree().create_timer(2), "timeout")
@@ -52,22 +50,23 @@ func state_machine():
 
 
 func stop_close_to_target():
-	if((position.x < targetPos.x + 3 and position.x > targetPos.x - 3) and standBy == false):
-		currentState = State.working 
-	if((position.x < targetPos.x + 3 and position.x > targetPos.x - 3) and standBy == true):
-		currentState = State.waiting 
+	if(position.x < targetPos.x + 3 and position.x > targetPos.x - 3):
+		motion.x = 0
+		if (standBy):
+			currentState = State.waiting 
+		else:
+			currentState = State.working 
 
 
 func get_side_movement():
 	motion.x *= speed
-	# if motion.x > 0:
-	# 	sprite.play("right")
-	# elif motion.x < 0:
-	# 	sprite.play("left")
-	# else:
-	# 	sprite.stop()
-	# 	sprite.play("down")
-	# 	sprite.frame = 0
+	if motion.x > 0:
+		sprite.play("right")
+	elif motion.x < 0:
+		sprite.play("left")
+	else:
+		sprite.stop()
+		sprite.play("front")
 
 
 func set_objPos(pos: Vector2):
