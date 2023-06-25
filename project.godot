@@ -10,24 +10,12 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "KinematicBody2D",
-"class": "NPC",
-"language": "GDScript",
-"path": "res://Game/NPC.gd"
-}, {
-"base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
 "path": "res://Player/Player.gd"
-}, {
-"base": "Node",
-"class": "States",
-"language": "GDScript",
-"path": "res://NPC/StateMachine.gd"
 } ]
 _global_script_class_icons={
-"NPC": "",
-"Player": "",
-"States": ""
+"Player": ""
 }
 
 [application]
