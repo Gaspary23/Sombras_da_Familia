@@ -8,7 +8,7 @@ onready var Washing_Machine = $Level/Scenery/Washing_Machine
 
 var player : KinematicBody2D
 var progress_bars : CanvasLayer
-var currentScene
+var current_scene
 var prev_time
 var inc_diff_time = 30
 
@@ -20,7 +20,7 @@ func _physics_process(_delta: float):
 
 
 func _check():
-	if(NPC.position.x < NPC.objPos.x + 3 and NPC.position.x > NPC.objPos.x - 3 and Washing_Machine.is_using):
+	if(NPC.position.x < NPC.obj_pos.x + 3 and NPC.position.x > NPC.obj_pos.x - 3 and Washing_Machine.is_using):
 		NPC.levelOfSuspission += 0.2
 
 
@@ -49,14 +49,14 @@ func goto_scene(path: String):
 	var world := get_child(0)
 	world.free()
 	var res := ResourceLoader.load(path)
-	currentScene = res.instance()
-	get_tree().get_root().add_child(currentScene)
+	current_scene = res.instance()
+	get_tree().get_root().add_child(current_scene)
 
 
 func _ready():
 	prev_time = OS.get_unix_time()
-	currentScene = get_child(0) # pega o Level1, etc
-	player = currentScene.get_node("Player")
+	current_scene = get_child(0) # pega o Level1, etc
+	player = current_scene.get_node("Player")
 	progress_bars = get_node("HUD")
 	
-	NPC.set_objPos(Washing_Machine.position)
+	NPC.set_obj_pos(Washing_Machine.position)

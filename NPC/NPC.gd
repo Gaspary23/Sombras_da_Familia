@@ -1,41 +1,41 @@
 extends KinematicBody2D
 
 export (int) var speed := 200
-enum State {working,waiting,checking,walking}
+enum State {working, waiting, checking, walking}
 
 onready var sprite = $AnimatedSprite
 onready var motion = Vector2.ZERO
-onready var initialPos = position
-onready var objPos: Vector2
-onready var targetPos: Vector2
+onready var initial_pos = position
+onready var obj_pos: Vector2
+onready var target_pos: Vector2
 
-var currentState = State.waiting
-var levelOfSuspission = 0
+var current_state = State.waiting
+var suspission_level = 0
 var standBy = false
 
 
 func _physics_process(_delta):
 	state_machine()
 	
-	if (levelOfSuspission > 30):
-		currentState = State.checking
+	if (suspission_level > 30):
+		current_state = State.checking
 
 
 func state_machine():
-	match currentState:		
+	match current_state:		
 		State.checking: # Look for player
 			print("DIE")
 		
 		State.waiting: # Remain idle
 			yield(get_tree().create_timer(1), "timeout")
 			standBy = false
-			targetPos = objPos
-			currentState = State.walking
+			target_pos = obj_pos
+			current_state = State.walking
 		
 		State.walking: # Go to target
-			if targetPos.x - position.x > 0:
+			if target_pos.x - position.x > 0:
 				motion.x = 1
-			elif targetPos.x - position.x < 0:
+			elif target_pos.x - position.x < 0:
 				motion.x = -1
 			
 			stop_close_to_target()
@@ -45,17 +45,17 @@ func state_machine():
 		State.working: # Do work
 			yield(get_tree().create_timer(2), "timeout")
 			standBy = true
-			targetPos = initialPos
-			currentState = State.walking
+			target_pos = initial_pos
+			current_state = State.walking
 
 
 func stop_close_to_target():
-	if(position.x < targetPos.x + 3 and position.x > targetPos.x - 3):
+	if(position.x < target_pos.x + 3 and position.x > target_pos.x - 3):
 		motion.x = 0
 		if (standBy):
-			currentState = State.waiting 
+			current_state = State.waiting 
 		else:
-			currentState = State.working 
+			current_state = State.working 
 
 
 func get_side_movement():
@@ -69,5 +69,5 @@ func get_side_movement():
 		sprite.play("front")
 
 
-func set_objPos(pos: Vector2):
-	objPos = pos
+func set_obj_pos(pos: Vector2):
+	obj_pos = pos
