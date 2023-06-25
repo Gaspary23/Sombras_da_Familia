@@ -17,12 +17,13 @@ var standBy = false
 func _physics_process(_delta):
 	state_machine()
 	
+	print(suspission_level)
 	if (suspission_level > 30):
 		current_state = State.checking
 
 
 func state_machine():
-	match current_state:		
+	match current_state:
 		State.checking: # Look for player
 			print("DIE")
 		
@@ -38,7 +39,12 @@ func state_machine():
 			elif target_pos.x - position.x < 0:
 				motion.x = -1
 			
-			stop_close_to_target()
+			if (is_close_to_target()):
+				motion.x = 0
+				if (standBy):
+					current_state = State.waiting 
+				else:
+					current_state = State.working 
 			get_side_movement()
 			motion = move_and_slide(motion, Vector2.UP)
 
@@ -49,13 +55,8 @@ func state_machine():
 			current_state = State.walking
 
 
-func stop_close_to_target():
-	if(position.x < target_pos.x + 3 and position.x > target_pos.x - 3):
-		motion.x = 0
-		if (standBy):
-			current_state = State.waiting 
-		else:
-			current_state = State.working 
+func is_close_to_target():
+	return (position.x < target_pos.x + 3 and position.x > target_pos.x - 3)
 
 
 func get_side_movement():

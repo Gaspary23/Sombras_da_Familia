@@ -14,14 +14,14 @@ var inc_diff_time = 30
 
 
 func _physics_process(_delta: float):
-	_check()
+	check_suspission()
 	increase_difficulty()
 	check_game_over()
 
 
-func _check():
-	if(NPC.position.x < NPC.obj_pos.x + 3 and NPC.position.x > NPC.obj_pos.x - 3 and Washing_Machine.is_using):
-		NPC.levelOfSuspission += 0.2
+func check_suspission():
+	if(NPC.is_close_to_target() and Washing_Machine.is_using):
+		NPC.suspission_level += 0.1
 
 
 func increase_difficulty():
