@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/heaterSound.mp3-2db02f570ed655a7a3abe2782a04a974.mp3str"
+
+[deps]
+
+source_file="res://SFX/heaterSound.mp3"
+dest_files=[ "res://.import/heaterSound.mp3-2db02f570ed655a7a3abe2782a04a974.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

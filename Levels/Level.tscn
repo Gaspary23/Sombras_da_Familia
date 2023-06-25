@@ -42,7 +42,7 @@ shape = SubResource( 1 )
 position = Vector2( 488, 529 )
 
 [node name="Washing_Machine" parent="Scenery" instance=ExtResource( 8 )]
-position = Vector2( 715, 529 )
+position = Vector2( 715, 530 )
 z_index = -1
 
 [node name="Heater" parent="Scenery" instance=ExtResource( 11 )]
