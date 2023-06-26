@@ -4,7 +4,7 @@ extends Node2D
 onready var game_over_sound = $gameOverSound
 onready var hud = $HUD
 # NPC's
-onready var mother = $Level/NPC
+onready var mother = $Level/Mother
 # Items
 onready var radio = $Level/Scenery/Radio
 onready var washing_machine = $Level/Scenery/Washing_Machine
@@ -32,10 +32,10 @@ func check_power():
 
 
 func check_suspicion():
-	if(mother.is_working() and not washing_machine.is_using):
-		mother.suspicion_level.value += 0.1
-	else:
-		mother.suspicion_level.value -= 0.1
+	if (mother.is_working() and not washing_machine.is_using):
+		mother.suspicion_level.value += 0.5
+	elif (not mother.is_checking()):
+		mother.suspicion_level.value -= 0.5
 
 
 func increase_difficulty():

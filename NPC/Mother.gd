@@ -9,26 +9,28 @@ onready var initial_pos = position
 onready var obj_pos: Vector2
 onready var target_pos: Vector2
 onready var suspicion_level = $Suspicion_Level
+onready var checking_level = $Checking_Level
 
 var current_state = State.waiting
 var standBy = false
 var timer := Timer.new()
 var wait_time = 5
-var tween 
+var tween
 
 
 func _physics_process(_delta):
 	state_machine()
 	update_suspicion()
-	
-	#if (suspicion_level > 30):
-	#	current_state = State.checking
 
 
 func state_machine():
 	match current_state:
 		State.checking: # Look for player
-			print("DIE")
+			checking_level.value -= 0.5
+			
+			if (checking_level.value == 0):
+				current_state = State.working
+				# return to some pos
 		
 		State.waiting: # Remain idle
 			yield(timer, "timeout")
@@ -53,22 +55,39 @@ func state_machine():
 			motion = move_and_slide(motion, Vector2.UP)
 
 		State.working: # Do work
-			yield(timer, "timeout")
 			standBy = true
-			target_pos = initial_pos
-			current_state = State.walking
+			
+			if (suspicion_level.value == 100):
+				checking_level.value = 100
+				current_state = State.checking
+			#target_pos = initial_pos
+			#current_state = State.walking
 			timer.set_wait_time(1) # for wait
 
 
 func update_suspicion():
-	if (suspicion_level.value == 0 ):
+	if (current_state == State.checking):
 		suspicion_level.hide()
-	else:
-		suspicion_level.show()
+		if (checking_level.value == 0):
+			checking_level.hide()
+		else:
+			checking_level.show()
+	else: # Any other state
+		checking_level.hide()
+		if (suspicion_level.value == 0):
+			suspicion_level.hide()
+		else:
+			suspicion_level.show()
+	
+	# Animation feedback when changing bars
+	if (checking_level.value == 100 and suspicion_level.value == 100):
+		squash_and_stretch()
 
 
-func is_working():
-	return current_state == State.working
+func squash_and_stretch():
+	tween = create_tween()
+	tween.tween_property(sprite, "scale", Vector2(1.25,1.25), 0.3)
+	tween.tween_property(sprite, "scale", Vector2(1,1), 0.3)
 
 
 func is_close_to_target():
@@ -86,19 +105,19 @@ func get_side_movement():
 		sprite.play("front")
 
 
-func squash_and_stretch():
-	tween = create_tween()
-	tween.tween_property(sprite, "scale", Vector2(1.25,0.75), 0.1)
-	tween.tween_property(sprite, "scale", Vector2(1,1), 0.1)
-
-
 func set_obj_pos(pos: Vector2):
 	obj_pos = pos
 
 
-func _on_timer_timeout() -> void:
-	queue_free()
+func is_working():
+	return current_state == State.working
+
+
+func is_checking():
+	return current_state == State.checking
+
 
 func _ready():
+	checking_level.value = 0
 	self.add_child(timer)
 	timer.start()
