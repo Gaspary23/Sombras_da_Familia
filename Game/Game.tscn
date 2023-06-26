@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Levels/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://GFX/Under.png" type="Texture" id=2]
@@ -7,7 +7,6 @@
 [ext_resource path="res://Game/Game.gd" type="Script" id=5]
 [ext_resource path="res://GFX/Over.png" type="Texture" id=6]
 [ext_resource path="res://SFX/game_over_sound.mp3" type="AudioStream" id=9]
-[ext_resource path="res://GFX/Over_Sus.png" type="Texture" id=10]
 [ext_resource path="res://GFX/Over_Cold.png" type="Texture" id=11]
 
 [node name="Game" type="Node2D"]
@@ -27,8 +26,9 @@ margin_right = 40.0
 margin_bottom = 40.0
 
 [node name="Madness_Progress" type="TextureProgress" parent="HUD/Madness"]
+margin_top = 54.0
 margin_right = 300.0
-margin_bottom = 50.0
+margin_bottom = 104.0
 texture_under = ExtResource( 2 )
 texture_over = ExtResource( 6 )
 texture_progress = ExtResource( 3 )
@@ -37,35 +37,16 @@ texture_progress = ExtResource( 3 )
 autostart = true
 
 [node name="Madness_Label" type="Label" parent="HUD/Madness"]
-margin_left = 305.0
-margin_top = 20.0
-margin_right = 300.0
+margin_left = 308.0
+margin_top = 73.0
+margin_right = 370.0
+margin_bottom = 87.0
 text = "MADNESS"
 
-[node name="Suspicion" type="Control" parent="HUD"]
-margin_right = 40.0
-margin_bottom = 40.0
-
-[node name="Suspicion_Progress" type="TextureProgress" parent="HUD/Suspicion"]
-margin_top = 60.0
-margin_right = 300.0
-margin_bottom = 50.0
-texture_under = ExtResource( 2 )
-texture_over = ExtResource( 6 )
-texture_progress = ExtResource( 10 )
-
-[node name="Suspicion_Timer" type="Timer" parent="HUD/Suspicion"]
-autostart = true
-
-[node name="Suspicion_Label" type="Label" parent="HUD/Suspicion"]
-margin_left = 305.0
-margin_top = 80.0
-margin_right = 300.0
-text = "SUSPICION"
-
 [node name="Coldness" type="Control" parent="HUD"]
+margin_top = -120.0
 margin_right = 40.0
-margin_bottom = 40.0
+margin_bottom = -80.0
 
 [node name="Coldness_Progress" type="TextureProgress" parent="HUD/Coldness"]
 margin_top = 120.0
@@ -91,7 +72,6 @@ stream = ExtResource( 9 )
 [connection signal="washing_machine_switch" from="Level/Scenery/Washing_Machine" to="HUD" method="_on_Washing_Machine_washing_machine_switch"]
 [connection signal="heater_switch" from="Level/Scenery/Heater" to="HUD" method="_on_Heater_heater_switch"]
 [connection signal="timeout" from="HUD/Madness/Madness_Timer" to="HUD" method="_on_Madness_Timer_timeout"]
-[connection signal="timeout" from="HUD/Suspicion/Suspicion_Timer" to="HUD" method="_on_Suspicion_Timer_timeout"]
 [connection signal="timeout" from="HUD/Coldness/Coldness_Timer" to="HUD" method="_on_Coldness_Timer_timeout"]
 
 [editable path="Level"]

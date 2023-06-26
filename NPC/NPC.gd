@@ -8,9 +8,9 @@ onready var motion = Vector2.ZERO
 onready var initial_pos = position
 onready var obj_pos: Vector2
 onready var target_pos: Vector2
+onready var suspicion_level = $Suspicion_Level
 
 var current_state = State.waiting
-var suspicion_level = 0
 var standBy = false
 var timer := Timer.new()
 var wait_time = 5
@@ -19,8 +19,8 @@ var tween
 
 func _physics_process(_delta):
 	state_machine()
+	update_suspicion()
 	
-	#print (suspicion_level)
 	#if (suspicion_level > 30):
 	#	current_state = State.checking
 
@@ -58,6 +58,13 @@ func state_machine():
 			target_pos = initial_pos
 			current_state = State.walking
 			timer.set_wait_time(1) # for wait
+
+
+func update_suspicion():
+	if (suspicion_level.value == 0 ):
+		suspicion_level.hide()
+	else:
+		suspicion_level.show()
 
 
 func is_working():

@@ -1,7 +1,5 @@
 extends Node2D
 
-signal increase_difficulty
-
 # Game Control
 onready var game_over_sound = $gameOverSound
 onready var hud = $HUD
@@ -35,7 +33,9 @@ func check_power():
 
 func check_suspicion():
 	if(mother.is_working() and not washing_machine.is_using):
-		mother.suspicion_level += 0.1
+		mother.suspicion_level.value += 0.1
+	else:
+		mother.suspicion_level.value -= 0.1
 
 
 func increase_difficulty():
@@ -49,7 +49,6 @@ func increase_difficulty():
 
 func check_game_over():
 	if (progress_bars.madness_bar.value >= 100 
-	or progress_bars.suspicion_bar.value >= 100 
 	or progress_bars.coldness_bar.value >= 100):
 		
 		if (not game_over_sound.is_playing()):

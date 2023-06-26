@@ -22,9 +22,9 @@ func _process(_delta: float) -> void:
 		sprite.play("Off")
 
 
-func _on_Radio_body_entered(body: Node) -> void:
+func _on_Radio_body_entered(_body: Node) -> void:
 	touching_player = true
 
 
-func _on_Radio_body_exited(body: Node) -> void:
+func _on_Radio_body_exited(_body: Node) -> void:
 	touching_player = false
