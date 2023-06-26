@@ -45,14 +45,6 @@ func check_game_over():
 		get_tree().change_scene("res://Game/GameOver.tscn")
 
 
-func goto_scene(path: String):
-	var world := get_child(0)
-	world.free()
-	var res := ResourceLoader.load(path)
-	current_scene = res.instance()
-	get_tree().get_root().add_child(current_scene)
-
-
 func _ready():
 	prev_time = OS.get_unix_time()
 	current_scene = get_child(0) # pega o Level1, etc

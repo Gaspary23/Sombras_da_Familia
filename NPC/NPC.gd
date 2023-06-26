@@ -12,12 +12,13 @@ onready var target_pos: Vector2
 var current_state = State.waiting
 var suspission_level = 0
 var standBy = false
+var timer := Timer.new()
+var tween 
 
 
 func _physics_process(_delta):
 	state_machine()
 	
-	print(suspission_level)
 	if (suspission_level > 30):
 		current_state = State.checking
 
@@ -28,7 +29,7 @@ func state_machine():
 			print("DIE")
 		
 		State.waiting: # Remain idle
-			yield(get_tree().create_timer(1), "timeout")
+			yield(timer, "timeout")
 			standBy = false
 			target_pos = obj_pos
 			current_state = State.walking
@@ -49,7 +50,7 @@ func state_machine():
 			motion = move_and_slide(motion, Vector2.UP)
 
 		State.working: # Do work
-			yield(get_tree().create_timer(2), "timeout")
+			yield(timer, "timeout")
 			standBy = true
 			target_pos = initial_pos
 			current_state = State.walking
@@ -70,5 +71,21 @@ func get_side_movement():
 		sprite.play("front")
 
 
+func squash_and_stretch():
+	tween = create_tween()
+	tween.tween_property(sprite, "scale", Vector2(1.25,0.75), 0.1)
+	tween.tween_property(sprite, "scale", Vector2(1,1), 0.1)
+
+
 func set_obj_pos(pos: Vector2):
 	obj_pos = pos
+
+
+func _on_timer_timeout() -> void:
+	queue_free()
+
+func _ready():
+	timer.set_wait_time(5)
+	timer.set_one_shot(false)
+	self.add_child(timer)
+	timer.start()
