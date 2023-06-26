@@ -6,7 +6,11 @@ onready var suspicion_bar = $Suspicion/Suspicion_Progress
 var coldness_delta = 5
 var madness_delta = 5
 var suspicion_delta = 0
-var diff_increment = 1.1
+var diff_increment = 2
+
+
+func _on_Coldness_Timer_timeout() -> void:
+	coldness_bar.value += coldness_delta
 
 
 func _on_Madness_Timer_timeout() -> void:
@@ -17,14 +21,14 @@ func _on_Suspicion_Timer_timeout() -> void:
 	suspicion_bar.value += suspicion_delta
 
 
-func _on_Coldness_Timer_timeout() -> void:
-	coldness_bar.value += coldness_delta
-
-
-func _on_Game_increase_difficulty() -> void:
+func increase_difficulty() -> void:
+	coldness_delta *= diff_increment
 	madness_delta *= diff_increment
 	suspicion_delta *= diff_increment
-	coldness_delta *= diff_increment
+	
+	coldness_delta = clamp(coldness_delta, -5, 15)
+	madness_delta = clamp(madness_delta, -5, 15)
+	suspicion_delta = clamp(suspicion_delta, -5, 15)
 
 
 func _on_Radio_radio_switch():

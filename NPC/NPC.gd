@@ -10,7 +10,7 @@ onready var obj_pos: Vector2
 onready var target_pos: Vector2
 
 var current_state = State.waiting
-var suspission_level = 0
+var suspicion_level = 0
 var standBy = false
 var timer := Timer.new()
 var wait_time = 5
@@ -20,8 +20,8 @@ var tween
 func _physics_process(_delta):
 	state_machine()
 	
-	print (suspission_level)
-	#if (suspission_level > 30):
+	#print (suspicion_level)
+	#if (suspicion_level > 30):
 	#	current_state = State.checking
 
 

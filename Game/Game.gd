@@ -4,6 +4,7 @@ signal increase_difficulty
 
 # Game Control
 onready var game_over_sound = $gameOverSound
+onready var hud = $HUD
 # NPC's
 onready var mother = $Level/NPC
 # Items
@@ -19,7 +20,7 @@ var inc_diff_time = 30
 
 func _physics_process(_delta: float):
 	check_power() # Electricity resource management
-	check_suspission() # NPC suspission
+	check_suspicion() # NPC suspicion
 	increase_difficulty() # Make game harder
 	check_game_over()
 
@@ -32,9 +33,9 @@ func check_power():
 			washing_machine.is_using = true
 
 
-func check_suspission():
+func check_suspicion():
 	if(mother.is_working() and not washing_machine.is_using):
-		mother.suspission_level += 0.1
+		mother.suspicion_level += 0.1
 
 
 func increase_difficulty():
@@ -43,7 +44,7 @@ func increase_difficulty():
 	
 	if (elapsed_time - inc_diff_time >= 0):
 		prev_time = current_time
-		emit_signal("increase_difficulty")
+		hud.increase_difficulty()
 
 
 func check_game_over():
