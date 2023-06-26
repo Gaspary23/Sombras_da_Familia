@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/video game console.png-f4d21aa4022dbc870191ac65a52ab62b.stex"
+path="res://.import/Arcade_Off.png-e854704014a16b27b1b9e0e6fdf3b3dc.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Items/video game console.png"
-dest_files=[ "res://.import/video game console.png-f4d21aa4022dbc870191ac65a52ab62b.stex" ]
+source_file="res://Items/Arcade_Off.png"
+dest_files=[ "res://.import/Arcade_Off.png-e854704014a16b27b1b9e0e6fdf3b3dc.stex" ]
 
 [params]
 

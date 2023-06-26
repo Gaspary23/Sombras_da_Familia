@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/lawn_mower_on.png-ae307ba52533a705ea3447774d385446.stex"
+path="res://.import/Workbench.png-cc184ba1360c6c931ac1f551c4149c0e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Items/lawn_mower_on.png"
-dest_files=[ "res://.import/lawn_mower_on.png-ae307ba52533a705ea3447774d385446.stex" ]
+source_file="res://Items/Workbench.png"
+dest_files=[ "res://.import/Workbench.png-cc184ba1360c6c931ac1f551c4149c0e.stex" ]
 
 [params]
 

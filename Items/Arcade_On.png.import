@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Casa.jpeg-de913128480e5a3feabf23e6a1e1df59.stex"
+path="res://.import/Arcade_On.png-b23aef41663ffceba7dd987de03b5662.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Items/Casa.jpeg"
-dest_files=[ "res://.import/Casa.jpeg-de913128480e5a3feabf23e6a1e1df59.stex" ]
+source_file="res://Items/Arcade_On.png"
+dest_files=[ "res://.import/Arcade_On.png-b23aef41663ffceba7dd987de03b5662.stex" ]
 
 [params]
 
