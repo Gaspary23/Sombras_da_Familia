@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
-[ext_resource path="res://NPC/NPC.gd" type="Script" id=1]
+[ext_resource path="res://NPC/Mother.gd" type="Script" id=1]
 [ext_resource path="res://Player/char.png" type="Texture" id=2]
-[ext_resource path="res://NPC/Progress.png" type="Texture" id=3]
-[ext_resource path="res://NPC/Under.png" type="Texture" id=4]
-[ext_resource path="res://NPC/Over.png" type="Texture" id=5]
+[ext_resource path="res://NPC/White_Sus.png" type="Texture" id=3]
+[ext_resource path="res://NPC/Black_Sus.png" type="Texture" id=4]
+[ext_resource path="res://NPC/Yellow_Sus.png" type="Texture" id=5]
+[ext_resource path="res://NPC/Red_Sus.png" type="Texture" id=6]
 
 [sub_resource type="AtlasTexture" id=7]
 flags = 4
@@ -72,7 +73,7 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 18.5, 28.5 )
 
-[node name="NPC" type="KinematicBody2D"]
+[node name="Mother" type="KinematicBody2D"]
 position = Vector2( 0, -32 )
 script = ExtResource( 1 )
 
@@ -92,7 +93,20 @@ margin_right = 27.0
 margin_bottom = -25.0
 rect_scale = Vector2( 0.75, 0.75 )
 step = 0.01
-texture_under = ExtResource( 4 )
-texture_over = ExtResource( 5 )
-texture_progress = ExtResource( 3 )
+texture_under = ExtResource( 3 )
+texture_over = ExtResource( 4 )
+texture_progress = ExtResource( 5 )
+fill_mode = 3
+
+[node name="Checking_Level" type="TextureProgress" parent="."]
+margin_left = -17.0
+margin_top = -72.0
+margin_right = 27.0
+margin_bottom = -25.0
+rect_scale = Vector2( 0.75, 0.75 )
+step = 0.01
+value = 100.0
+texture_under = ExtResource( 5 )
+texture_over = ExtResource( 4 )
+texture_progress = ExtResource( 6 )
 fill_mode = 3
