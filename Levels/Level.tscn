@@ -39,10 +39,10 @@ position = Vector2( 7.5, -0.5 )
 shape = SubResource( 1 )
 
 [node name="Radio" parent="Scenery" instance=ExtResource( 10 )]
-position = Vector2( 488, 529 )
+position = Vector2( 687, 529 )
 
 [node name="Washing_Machine" parent="Scenery" instance=ExtResource( 8 )]
-position = Vector2( 715, 530 )
+position = Vector2( 686, 322 )
 z_index = -1
 
 [node name="Heater" parent="Scenery" instance=ExtResource( 11 )]
@@ -56,7 +56,5 @@ position = Vector2( 70, 474 )
 position = Vector2( 933, 504 )
 
 [connection signal="input_event" from="Player" to="Player" method="_on_Player_input_event"]
-[connection signal="radio_playing" from="Scenery/Radio" to="Scenery/Washing_Machine" method="_on_Radio_radio_playing"]
-[connection signal="washing_machine_using" from="Scenery/Washing_Machine" to="Scenery/Radio" method="_on_Washing_Machine_washing_machine_using"]
 [connection signal="body_entered" from="Scenery/Heater" to="Scenery/Heater" method="_on_Heater_body_entered"]
 [connection signal="body_exited" from="Scenery/Heater" to="Scenery/Heater" method="_on_Heater_body_exited"]

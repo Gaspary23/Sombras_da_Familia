@@ -1,15 +1,15 @@
 extends Area2D
 
-signal heater_on
+signal heater_switch
 
 onready var sprite = $AnimatedSprite
 onready var sound = $AudioStreamPlayer
-var touchingPlayer = false
+var touching_player = false
 var is_using = false
 
 func _process(_delta: float) -> void:
-	if (Input.is_action_just_pressed("interact") and touchingPlayer):
-		emit_signal("heater_on")
+	if (Input.is_action_just_pressed("interact") and touching_player):
+		emit_signal("heater_switch")
 		is_using = not is_using
 	
 	if (is_using):
@@ -22,9 +22,7 @@ func _process(_delta: float) -> void:
 
 
 func _on_Heater_body_entered(body: Node) -> void:
-	if (body.name == "Player"):
-		touchingPlayer = true
+	touching_player = true
 
 func _on_Heater_body_exited(body: Node) -> void:
-	if (body.name == "Player"):
-		touchingPlayer = false
+	touching_player = false

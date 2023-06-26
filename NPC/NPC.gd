@@ -13,14 +13,16 @@ var current_state = State.waiting
 var suspission_level = 0
 var standBy = false
 var timer := Timer.new()
+var wait_time = 5
 var tween 
 
 
 func _physics_process(_delta):
 	state_machine()
 	
-	if (suspission_level > 30):
-		current_state = State.checking
+	print (suspission_level)
+	#if (suspission_level > 30):
+	#	current_state = State.checking
 
 
 func state_machine():
@@ -33,6 +35,7 @@ func state_machine():
 			standBy = false
 			target_pos = obj_pos
 			current_state = State.walking
+			timer.set_wait_time(5) # for work
 		
 		State.walking: # Go to target
 			if target_pos.x - position.x > 0:
@@ -54,6 +57,11 @@ func state_machine():
 			standBy = true
 			target_pos = initial_pos
 			current_state = State.walking
+			timer.set_wait_time(1) # for wait
+
+
+func is_working():
+	return current_state == State.working
 
 
 func is_close_to_target():
@@ -85,7 +93,5 @@ func _on_timer_timeout() -> void:
 	queue_free()
 
 func _ready():
-	timer.set_wait_time(5)
-	timer.set_one_shot(false)
 	self.add_child(timer)
 	timer.start()

@@ -21,19 +21,19 @@ func _on_Coldness_Timer_timeout() -> void:
 	coldness_bar.value += coldness_delta
 
 
-func _on_Radio_radio_playing():
-	madness_delta *= -1
-
-
-func _on_Heater_heater_on() -> void:
-	coldness_delta *= -1
-
-
-func _on_Washing_Machine_washing_machine_using() -> void:
-	madness_delta *= -1
-
-
 func _on_Game_increase_difficulty() -> void:
 	madness_delta *= diff_increment
 	suspicion_delta *= diff_increment
 	coldness_delta *= diff_increment
+
+
+func _on_Radio_radio_switch():
+	madness_delta *= -1
+
+
+func _on_Washing_Machine_washing_machine_switch():
+	pass # Replace with function body.
+
+
+func _on_Heater_heater_switch():
+	coldness_delta *= -1
