@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 export (int) var speed
-enum State {working, waiting, checking}
+enum State {checking, waiting, working}
 
 onready var sprite = $AnimatedSprite
 onready var motion = Vector2.ZERO
@@ -14,7 +14,6 @@ onready var checking_level = $Checking_Level
 
 var current_state = State.waiting
 var timer := Timer.new()
-var look_around = false
 var wait_time = 5
 var tween
 
@@ -29,10 +28,11 @@ func state_machine():
 		State.checking: # Look for player
 			if (checking_level.value != 0):
 				check_basement()
-				checking_level.value -= 0.5
+				if (is_close_to_targetY()):
+					checking_level.value -= 0.5
 			else:
 				target_pos = obj_pos
-				return_to_work()
+				current_state = State.working
 		
 		State.waiting: # Remain idle
 			target_pos = obj_pos
@@ -42,8 +42,7 @@ func state_machine():
 				current_state = State.working
 		
 		State.working: # Do work
-			sprite.stop()
-			sprite.play("back")
+			go_work()
 			
 			if (suspicion_level.value == 100):
 				checking_level.value = 100
@@ -61,13 +60,12 @@ func check_basement():
 			use_stairs()
 		else:
 			position.y = stairs_pos.y
-			motion = Vector2(0,0)
-			look_around = true
+			motion = Vector2.ZERO
 			sprite.stop()
 			sprite.play("front")
 
 
-func return_to_work():
+func go_work():
 	if (not is_close_to_targetY()):
 		use_stairs()
 	else:
@@ -75,9 +73,7 @@ func return_to_work():
 			walk_to_target()
 		else:
 			position.x = obj_pos.x
-			motion = Vector2(0,0)
-			look_around = false
-			current_state = State.working
+			motion = Vector2.ZERO
 			sprite.stop()
 			sprite.play("back")
 
@@ -97,7 +93,7 @@ func update_suspicion():
 			suspicion_level.show()
 	
 	# Animation feedback when changing bars
-	if (checking_level.value == 100 and suspicion_level.value == 100):
+	if (checking_level.value == 100 and suspicion_level.value == 100 and is_working()):
 		squash_and_stretch()
 
 
@@ -158,7 +154,7 @@ func set_targets_pos(obj: Vector2, stairs: Vector2):
 
 
 func is_working():
-	return current_state == State.working
+	return current_state == State.working and target_pos == obj_pos and is_close_to_targetX()
 
 
 func is_checking():

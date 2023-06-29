@@ -29,6 +29,26 @@ func _physics_process(_delta: float):
 	check_game_over()
 
 
+func check_suspicion():
+	# Child control
+	if (child.is_working() and not arcade.is_using):
+		child.suspicion_level.value += 0.5
+	elif (not child.is_checking()):
+		child.suspicion_level.value -= 0.5
+	
+	# Father control
+	if (father.is_working() and not lawn_mower.is_using):
+		father.suspicion_level.value += 0.5
+	elif (not father.is_checking()):
+		father.suspicion_level.value -= 0.5
+	
+	# Mother control
+	if (mother.is_working() and not washing_machine.is_using):
+		mother.suspicion_level.value += 0.5
+	elif (not mother.is_checking()):
+		mother.suspicion_level.value -= 0.5
+
+
 func check_power():
 	# Child control
 	if (arcade.touching_child):
@@ -50,26 +70,6 @@ func check_power():
 			washing_machine.is_using = false
 		else:
 			washing_machine.is_using = true
-
-
-func check_suspicion():
-	# Child control
-	if (child.is_working() and not arcade.is_using):
-		child.suspicion_level.value += 1
-	elif (not child.is_checking()):
-		child.suspicion_level.value -= 0.1
-	
-	# Father control
-	if (father.is_working() and not lawn_mower.is_using):
-		father.suspicion_level.value += 0
-	elif (not father.is_checking()):
-		father.suspicion_level.value -= 0.1
-	
-	# Mother control
-	if (mother.is_working() and not washing_machine.is_using):
-		mother.suspicion_level.value += 0
-	elif (not mother.is_checking()):
-		mother.suspicion_level.value -= 0.1
 
 
 func increase_difficulty():
