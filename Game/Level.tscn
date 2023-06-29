@@ -19,7 +19,7 @@
 position = Vector2( 578, 531 )
 
 [node name="Child" parent="." instance=ExtResource( 4 )]
-position = Vector2( 849, 225 )
+position = Vector2( 849, 226 )
 
 [node name="Father" parent="." instance=ExtResource( 5 )]
 position = Vector2( 432, 353 )
@@ -30,20 +30,20 @@ position = Vector2( 503, 353 )
 [node name="Scenery" type="Node" parent="."]
 
 [node name="Arcade" parent="Scenery" instance=ExtResource( 2 )]
-position = Vector2( 386, 177 )
+position = Vector2( 386, 226 )
 
 [node name="Heater" parent="Scenery" instance=ExtResource( 11 )]
 position = Vector2( 510, 498 )
 z_index = -1
 
 [node name="Lawn_Mower" parent="Scenery" instance=ExtResource( 3 )]
-position = Vector2( 158, 319 )
+position = Vector2( 158, 353 )
 
 [node name="Radio" parent="Scenery" instance=ExtResource( 10 )]
 position = Vector2( 715, 495 )
 
 [node name="Washing_Machine" parent="Scenery" instance=ExtResource( 8 )]
-position = Vector2( 897, 317 )
+position = Vector2( 897, 353 )
 z_index = -1
 
 [node name="Wardrobe" parent="Scenery" instance=ExtResource( 7 )]

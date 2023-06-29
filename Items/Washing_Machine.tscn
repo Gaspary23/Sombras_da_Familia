@@ -25,13 +25,14 @@ extents = Vector2( 19, 24 )
 script = ExtResource( 3 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -36 )
 scale = Vector2( 0.13, 0.13 )
 frames = SubResource( 2 )
 animation = "Off"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-position = Vector2( 0, 11 )
+position = Vector2( 0, -24 )
 shape = SubResource( 1 )
 
 [node name="Washing" type="AudioStreamPlayer" parent="."]

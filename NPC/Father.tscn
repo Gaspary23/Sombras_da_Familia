@@ -109,7 +109,7 @@ animation = "front"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-position = Vector2( -3.17891e-07, -1 )
+position = Vector2( 0, -19 )
 shape = SubResource( 15 )
 
 [node name="Suspicion_Level" type="TextureProgress" parent="."]

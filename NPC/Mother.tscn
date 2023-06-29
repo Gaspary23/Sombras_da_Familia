@@ -96,7 +96,7 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 18.5, 28.5 )
+extents = Vector2( 14.6667, 19.75 )
 
 [node name="Mother" type="KinematicBody2D"]
 scale = Vector2( 1.5, 1.5 )
@@ -109,7 +109,7 @@ animation = "front"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-position = Vector2( -1, 2.5 )
+position = Vector2( 4.76837e-07, -20.25 )
 shape = SubResource( 6 )
 
 [node name="Suspicion_Level" type="TextureProgress" parent="."]
