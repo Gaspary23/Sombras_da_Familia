@@ -20,6 +20,8 @@ var tween
 
 
 func _physics_process(_delta):
+	#stairs_pos.x = 600
+	#stairs_pos.y = 531
 	state_machine()
 	update_suspicion()
 
@@ -61,18 +63,26 @@ func state_machine():
 			current_state = State.walking
 		
 		State.walking: # Go to target
-			if target_pos.x - position.x > 0:
-				motion.x = 1
-			elif target_pos.x - position.x < 0:
-				motion.x = -1
+			if target_pos.y - position.y > 0:
+				motion.y = 1
+			elif target_pos.y - position.y < 0:
+				motion.y = -1
 			
-			if (is_close_to_target()):
-				motion.x = 0
-				if (standBy):
-					current_state = State.waiting 
-				else:
-					current_state = State.working 
-			get_side_movement()
+			if (is_close_to_target2()):
+				motion.y = 0
+				if target_pos.x - position.x > 0:
+					motion.x = 1
+				elif target_pos.x - position.x < 0:
+					motion.x = -1
+				if(is_close_to_target()):
+					motion.x = 0
+					if (standBy):
+						current_state = State.waiting 
+					else:
+						current_state = State.working 
+				get_side_movement()
+				motion = move_and_slide(motion, Vector2.UP)
+			get_vertical_movement()
 			motion = move_and_slide(motion, Vector2.UP)
 
 		State.working: # Do work
@@ -111,10 +121,11 @@ func squash_and_stretch():
 
 
 func is_close_to_target():
-	return (position.x < target_pos.x + 2 and position.x > target_pos.x - 2)
+	print((position.x < target_pos.x + 3 and position.x > target_pos.x - 3))
+	return (position.x < target_pos.x + 3 and position.x > target_pos.x - 3)
 	
 func is_close_to_target2():
-	return (position.y < target_pos.y + 2 and position.y > target_pos.y - 2)
+	return (position.y < target_pos.y + 3 and position.y > target_pos.y - 3)
 
 
 func get_side_movement():

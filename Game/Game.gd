@@ -98,5 +98,7 @@ func _ready():
 	progress_bars = get_node("HUD")
 	
 	child.set_obj_pos(arcade.position)
+	print(arcade.position)
 	father.set_obj_pos(lawn_mower.position)
+	print(lawn_mower.position)
 	mother.set_obj_pos(washing_machine.position)
