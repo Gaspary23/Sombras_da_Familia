@@ -14,6 +14,7 @@ onready var checking_level = $Checking_Level
 
 var current_state = State.waiting
 var timer := Timer.new()
+var look_around = false
 var wait_time = 5
 var tween
 
@@ -26,12 +27,12 @@ func _physics_process(_delta):
 func state_machine():	
 	match current_state:
 		State.checking: # Look for player
-			check_basement()
-			checking_level.value -= 0.1
-			
-			if (checking_level.value == 0):
+			if (checking_level.value != 0):
+				check_basement()
+				checking_level.value -= 0.5
+			else:
 				target_pos = obj_pos
-				current_state = State.working
+				return_to_work()
 		
 		State.waiting: # Remain idle
 			target_pos = obj_pos
@@ -52,34 +53,7 @@ func state_machine():
 			#current_state = State.walking
 
 
-func walk_to_target():
-	if (target_pos.x - position.x > 0):
-		motion.x = 1
-	elif (target_pos.x - position.x < 0):
-		motion.x = -1
-	
-	motion.x *= speed
-	sprite_animation()
-	motion = move_and_slide(motion, Vector2.UP)
-
-
-func use_stairs():
-	motion.x = 0
-	
-	if (target_pos.y - position.y < 0):
-		motion.y = -1
-	elif (target_pos.y - position.y > 0):
-		motion.y = 1
-	
-	motion.y *= speed
-	sprite_animation()
-	motion = move_and_slide(motion, Vector2.UP)
-
-
 func check_basement():
-	if (target_pos != stairs_pos):
-		return
-	
 	if (not is_close_to_targetX()):
 		walk_to_target()
 	else:
@@ -87,6 +61,26 @@ func check_basement():
 			use_stairs()
 		else:
 			position.y = stairs_pos.y
+			motion = Vector2(0,0)
+			look_around = true
+			sprite.stop()
+			sprite.play("front")
+
+
+func return_to_work():
+	if (not is_close_to_targetY()):
+		use_stairs()
+	else:
+		if (not is_close_to_targetX()):
+			walk_to_target()
+		else:
+			position.x = obj_pos.x
+			motion = Vector2(0,0)
+			look_around = false
+			current_state = State.working
+			sprite.stop()
+			sprite.play("back")
+
 
 func update_suspicion():
 	if (current_state == State.checking):
@@ -119,6 +113,30 @@ func is_close_to_targetX():
 
 func is_close_to_targetY():
 	return (position.y < target_pos.y + 3 and position.y > target_pos.y - 3)
+
+
+func walk_to_target():
+	motion.y = 0
+	if (target_pos.x - position.x > 0):
+		motion.x = 1
+	elif (target_pos.x - position.x < 0):
+		motion.x = -1
+	
+	motion.x *= speed
+	sprite_animation()
+	motion = move_and_slide(motion, Vector2.UP)
+
+
+func use_stairs():
+	motion.x = 0
+	if (target_pos.y - position.y < 0):
+		motion.y = -1
+	elif (target_pos.y - position.y > 0):
+		motion.y = 1
+	
+	motion.y *= speed
+	sprite_animation()
+	motion = move_and_slide(motion, Vector2.UP)
 
 
 func sprite_animation():
