@@ -33,11 +33,9 @@ func state_machine():
 				# return to some pos
 		
 		State.waiting: # Remain idle
-			yield(timer, "timeout")
 			standBy = false
 			target_pos = obj_pos
 			current_state = State.walking
-			timer.set_wait_time(5) # for work
 		
 		State.walking: # Go to target
 			if target_pos.x - position.x > 0:
@@ -62,7 +60,6 @@ func state_machine():
 				current_state = State.checking
 			#target_pos = initial_pos
 			#current_state = State.walking
-			timer.set_wait_time(1) # for wait
 
 
 func update_suspicion():

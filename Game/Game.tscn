@@ -65,9 +65,9 @@ text = "COLDNESS"
 [node name="gameOverSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 9 )
 
+[connection signal="heater_switch" from="Level/Scenery/Heater" to="HUD" method="_on_Heater_heater_switch"]
 [connection signal="radio_switch" from="Level/Scenery/Radio" to="HUD" method="_on_Radio_radio_switch"]
 [connection signal="washing_machine_switch" from="Level/Scenery/Washing_Machine" to="HUD" method="_on_Washing_Machine_washing_machine_switch"]
-[connection signal="heater_switch" from="Level/Scenery/Heater" to="HUD" method="_on_Heater_heater_switch"]
 [connection signal="timeout" from="HUD/Madness/Madness_Timer" to="HUD" method="_on_Madness_Timer_timeout"]
 [connection signal="timeout" from="HUD/Coldness/Coldness_Timer" to="HUD" method="_on_Coldness_Timer_timeout"]
 

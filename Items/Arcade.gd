@@ -3,18 +3,18 @@ extends Area2D
 signal arcade_switch
 
 onready var sprite = $AnimatedSprite
-onready var sound = $AudioStreamPlayer
+onready var video = $VideoPlayer
 var touching_child = false
 var is_using = false
 
 
 func _process(_delta: float) -> void:
 	if (is_using):
-		if (not sound.is_playing()):
-			sound.play()
+		if (not video.is_playing()):
+			video.play()
 		sprite.play("On")
 	else:
-		sound.stop()
+		video.stop()
 		sprite.play("Off")
 
 

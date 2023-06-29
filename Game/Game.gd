@@ -4,8 +4,11 @@ extends Node2D
 onready var game_over_sound = $gameOverSound
 onready var hud = $HUD
 # NPC's
+onready var child = $Level/Child
 onready var mother = $Level/Mother
 # Items
+onready var arcade = $Level/Scenery/Arcade
+onready var heater = $Level/Scenery/Heater
 onready var radio = $Level/Scenery/Radio
 onready var washing_machine = $Level/Scenery/Washing_Machine
 
@@ -24,6 +27,14 @@ func _physics_process(_delta: float):
 
 
 func check_power():
+	# Child control
+	if (arcade.touching_child):
+		if (heater.is_using):
+			arcade.is_using = false
+		else:
+			arcade.is_using = true
+	
+	# Mother control
 	if (washing_machine.touching_mother):
 		if (radio.is_using):
 			washing_machine.is_using = false
@@ -32,6 +43,13 @@ func check_power():
 
 
 func check_suspicion():
+	# Child control
+	if (child.is_working() and not arcade.is_using):
+		child.suspicion_level.value += 0.5
+	elif (not child.is_checking()):
+		child.suspicion_level.value -= 0.5
+	
+	# Mother control
 	if (mother.is_working() and not washing_machine.is_using):
 		mother.suspicion_level.value += 0.5
 	elif (not mother.is_checking()):
@@ -64,4 +82,5 @@ func _ready():
 	player = current_scene.get_node("Player")
 	progress_bars = get_node("HUD")
 	
+	child.set_obj_pos(arcade.position)
 	mother.set_obj_pos(washing_machine.position)

@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://NPC/Mother.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Items/Arcade.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Items/Lawn_Mower.tscn" type="PackedScene" id=3]
+[ext_resource path="res://NPC/Child.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Items/WorkBench.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Items/Wardrobe.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Items/Washing_Machine.tscn" type="PackedScene" id=8]
@@ -19,8 +20,11 @@ extents = Vector2( 513.5, 20 )
 [node name="Player" parent="." instance=ExtResource( 9 )]
 position = Vector2( 537, 565 )
 
+[node name="Child" parent="." instance=ExtResource( 4 )]
+position = Vector2( 166, 337 )
+
 [node name="Mother" parent="." instance=ExtResource( 1 )]
-position = Vector2( 225, 331 )
+position = Vector2( 494, 329 )
 
 [node name="Scenery" type="Node" parent="."]
 
@@ -41,7 +45,7 @@ position = Vector2( 7.5, -0.5 )
 shape = SubResource( 1 )
 
 [node name="Arcade" parent="Scenery" instance=ExtResource( 2 )]
-position = Vector2( 260, 325 )
+position = Vector2( 259, 309 )
 
 [node name="Heater" parent="Scenery" instance=ExtResource( 11 )]
 position = Vector2( 333, 532 )

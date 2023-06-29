@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Items/Arcade_On.png" type="Texture" id=1]
 [ext_resource path="res://Items/Arcade_Off.png" type="Texture" id=2]
 [ext_resource path="res://Items/Arcade.gd" type="Script" id=3]
+[ext_resource path="res://Items/Street_Fighter.webm" type="VideoStream" id=4]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -34,7 +35,12 @@ visible = false
 position = Vector2( 0, 6.5 )
 shape = SubResource( 2 )
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="VideoPlayer" type="VideoPlayer" parent="."]
+margin_left = -11.0
+margin_top = -11.0
+margin_right = 11.0
+margin_bottom = 5.0
+stream = ExtResource( 4 )
 
 [connection signal="body_entered" from="." to="." method="_on_Arcade_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_Arcade_body_exited"]
