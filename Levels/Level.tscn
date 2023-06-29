@@ -69,7 +69,8 @@ z_index = -1
 position = Vector2( 70, 474 )
 
 [node name="WorkBench" parent="Scenery" instance=ExtResource( 6 )]
-position = Vector2( 933, 504 )
+position = Vector2( 933, 519 )
 
+[connection signal="hide_workbench" from="Player" to="Scenery/WorkBench" method="_on_Player_hide_workbench"]
 [connection signal="body_entered" from="Scenery/Heater" to="Scenery/Heater" method="_on_Heater_body_entered"]
 [connection signal="body_exited" from="Scenery/Heater" to="Scenery/Heater" method="_on_Heater_body_exited"]
