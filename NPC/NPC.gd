@@ -8,6 +8,7 @@ onready var motion = Vector2.ZERO
 onready var initial_pos = position
 onready var obj_pos: Vector2
 onready var target_pos: Vector2
+onready var stairs_pos: Vector2
 onready var suspicion_level = $Suspicion_Level
 onready var checking_level = $Checking_Level
 
@@ -27,7 +28,21 @@ func state_machine():
 	match current_state:
 		State.checking: # Look for player
 			checking_level.value -= 0.5
+			target_pos = stairs_pos
+			print(stairs_pos)
+			if target_pos.x - position.x > 0:
+				motion.x = 1
+			elif target_pos.x - position.x < 0:
+				motion.x = -1
 			
+			if (is_close_to_target()):
+				motion.x = 0
+				if (standBy):
+					current_state = State.waiting 
+				else:
+					current_state = State.working 
+			get_side_movement()
+			motion = move_and_slide(motion, Vector2.UP)
 			if (checking_level.value == 0):
 				current_state = State.working
 				# return to some pos
@@ -53,8 +68,6 @@ func state_machine():
 			motion = move_and_slide(motion, Vector2.UP)
 
 		State.working: # Do work
-			sprite.stop()
-			sprite.play("back")
 			standBy = true
 			
 			if (suspicion_level.value == 100):
@@ -90,7 +103,7 @@ func squash_and_stretch():
 
 
 func is_close_to_target():
-	return (position.x < target_pos.x + 3 and position.x > target_pos.x - 3)
+	return (position.x < target_pos.x + 2 and position.x > target_pos.x - 2)
 
 
 func get_side_movement():
