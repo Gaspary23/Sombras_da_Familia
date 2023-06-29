@@ -1,5 +1,8 @@
 extends KinematicBody2D
 
+signal hide_workbench
+
+
 export (int) var speed := 200
 
 onready var sprite = $Sprite
@@ -10,15 +13,19 @@ var tween
 
 
 func _physics_process(_delta):
-	print(is_on_wall(), ", ", is_on_floor())
 	if (Input.is_action_just_pressed("interact")):
 		squash_and_stretch()
+		
 		if(is_on_wall()):
-			door_sound.play()
 			tween.tween_property(sprite, "visible", hidden, 0.01)
 			hidden = not hidden
+			# If player is on right side hide on workbench
+			if (position > get_viewport_rect().size/2):
+				emit_signal("hide_workbench")
+			else: # If on left side, hide on wardrobe
+				door_sound.play()
 	
-	if(visible):
+	if(not hidden):
 		get_side_input()
 		motion = move_and_slide(motion, Vector2.UP)
 

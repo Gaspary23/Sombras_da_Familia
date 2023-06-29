@@ -71,12 +71,13 @@ z_index = -1
 position = Vector2( 390, 466 )
 
 [node name="WorkBench" parent="Scenery" instance=ExtResource( 6 )]
-position = Vector2( 868, 471 )
+position = Vector2( 933, 519 )
 
 [node name="Background" type="Sprite" parent="."]
 position = Vector2( 530, 305 )
 z_index = -7
 texture = ExtResource( 13 )
 
+[connection signal="hide_workbench" from="Player" to="Scenery/WorkBench" method="_on_Player_hide_workbench"]
 [connection signal="body_entered" from="Scenery/Heater" to="Scenery/Heater" method="_on_Heater_body_entered"]
 [connection signal="body_exited" from="Scenery/Heater" to="Scenery/Heater" method="_on_Heater_body_exited"]
