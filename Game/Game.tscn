@@ -10,7 +10,6 @@
 [ext_resource path="res://GFX/Over_Cold.png" type="Texture" id=11]
 
 [node name="Game" type="Node2D"]
-position = Vector2( 1, 0 )
 script = ExtResource( 5 )
 
 [node name="Level" parent="." instance=ExtResource( 1 )]

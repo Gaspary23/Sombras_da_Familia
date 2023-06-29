@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://NPC/Mother.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Items/Arcade.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Items/Radio.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Items/Heater.tscn" type="PackedScene" id=11]
 [ext_resource path="res://GFX/tiles/grass2.png" type="Texture" id=12]
+[ext_resource path="res://Items/Background.png" type="Texture" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 513.5, 20 )
@@ -19,21 +20,22 @@ extents = Vector2( 513.5, 20 )
 [node name="Level" type="Node" groups=["Level1"]]
 
 [node name="Player" parent="." instance=ExtResource( 9 )]
-position = Vector2( 537, 566 )
+position = Vector2( 578, 531 )
 
 [node name="Child" parent="." instance=ExtResource( 4 )]
-position = Vector2( 166, 337 )
+position = Vector2( 849, 198 )
 
 [node name="Father" parent="." instance=ExtResource( 5 )]
-position = Vector2( 322, 193 )
+position = Vector2( 432, 327 )
 
 [node name="Mother" parent="." instance=ExtResource( 1 )]
-position = Vector2( 494, 329 )
+position = Vector2( 503, 322 )
 
 [node name="Scenery" type="Node" parent="."]
 
 [node name="Grass" type="StaticBody2D" parent="Scenery"]
-position = Vector2( 505, 586 )
+position = Vector2( 505, 553 )
+z_index = -8
 __meta__ = {
 "_edit_group_": true
 }
@@ -49,27 +51,32 @@ position = Vector2( 7.5, -0.5 )
 shape = SubResource( 1 )
 
 [node name="Arcade" parent="Scenery" instance=ExtResource( 2 )]
-position = Vector2( 259, 309 )
+position = Vector2( 386, 177 )
 
 [node name="Heater" parent="Scenery" instance=ExtResource( 11 )]
-position = Vector2( 333, 532 )
+position = Vector2( 497, 498 )
 z_index = -1
 
 [node name="Lawn_Mower" parent="Scenery" instance=ExtResource( 3 )]
-position = Vector2( 406, 179 )
+position = Vector2( 158, 319 )
 
 [node name="Radio" parent="Scenery" instance=ExtResource( 10 )]
-position = Vector2( 687, 529 )
+position = Vector2( 688, 495 )
 
 [node name="Washing_Machine" parent="Scenery" instance=ExtResource( 8 )]
-position = Vector2( 686, 322 )
+position = Vector2( 897, 317 )
 z_index = -1
 
 [node name="Wardrobe" parent="Scenery" instance=ExtResource( 7 )]
-position = Vector2( 70, 474 )
+position = Vector2( 390, 466 )
 
 [node name="WorkBench" parent="Scenery" instance=ExtResource( 6 )]
 position = Vector2( 933, 519 )
+
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 530, 305 )
+z_index = -7
+texture = ExtResource( 13 )
 
 [connection signal="hide_workbench" from="Player" to="Scenery/WorkBench" method="_on_Player_hide_workbench"]
 [connection signal="body_entered" from="Scenery/Heater" to="Scenery/Heater" method="_on_Heater_body_entered"]
