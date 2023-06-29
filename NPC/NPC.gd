@@ -23,14 +23,10 @@ func _physics_process(_delta):
 	update_suspicion()
 
 
-func state_machine():
-	if (not is_close_to_target()):
-		walk_to_target()
-	else:
-		motion.x = 0
-	
+func state_machine():	
 	match current_state:
 		State.checking: # Look for player
+			check_basement()
 			checking_level.value -= 0.1
 			
 			if (checking_level.value == 0):
@@ -39,7 +35,9 @@ func state_machine():
 		
 		State.waiting: # Remain idle
 			target_pos = obj_pos
-			if (is_close_to_target()):
+			if (not is_close_to_targetX()):
+				walk_to_target()
+			else:
 				current_state = State.working
 		
 		State.working: # Do work
@@ -55,15 +53,40 @@ func state_machine():
 
 
 func walk_to_target():
-	if target_pos.x - position.x > 0:
+	if (target_pos.x - position.x > 0):
 		motion.x = 1
-	elif target_pos.x - position.x < 0:
+	elif (target_pos.x - position.x < 0):
 		motion.x = -1
 	
 	motion.x *= speed
 	sprite_animation()
 	motion = move_and_slide(motion, Vector2.UP)
 
+
+func use_stairs():
+	motion.x = 0
+	
+	if (target_pos.y - position.y < 0):
+		motion.y = -1
+	elif (target_pos.y - position.y > 0):
+		motion.y = 1
+	
+	motion.y *= speed
+	sprite_animation()
+	motion = move_and_slide(motion, Vector2.UP)
+
+
+func check_basement():
+	if (target_pos != stairs_pos):
+		return
+	
+	if (not is_close_to_targetX()):
+		walk_to_target()
+	else:
+		if (not is_close_to_targetY()):
+			use_stairs()
+		else:
+			position.y = stairs_pos.y
 
 func update_suspicion():
 	if (current_state == State.checking):
@@ -90,8 +113,12 @@ func squash_and_stretch():
 	tween.tween_property(sprite, "scale", Vector2(1,1), 0.3)
 
 
-func is_close_to_target():
+func is_close_to_targetX():
 	return (position.x < target_pos.x + 3 and position.x > target_pos.x - 3)
+
+
+func is_close_to_targetY():
+	return (position.y < target_pos.y + 3 and position.y > target_pos.y - 3)
 
 
 func sprite_animation():
@@ -99,9 +126,12 @@ func sprite_animation():
 		sprite.play("right")
 	elif motion.x < 0:
 		sprite.play("left")
-	else:
+	elif motion.x == 0:
 		sprite.stop()
 		sprite.play("front")
+	
+	if motion.y != 0:
+		sprite.play("back")
 
 
 func set_targets_pos(obj: Vector2, stairs: Vector2):

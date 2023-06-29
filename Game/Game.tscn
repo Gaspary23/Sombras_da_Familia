@@ -14,9 +14,6 @@ script = ExtResource( 5 )
 
 [node name="Level" parent="." instance=ExtResource( 1 )]
 
-[node name="Mother" parent="Level" index="3"]
-position = Vector2( 503, 321 )
-
 [node name="HUD" type="CanvasLayer" parent="." groups=["HUD"]]
 script = ExtResource( 4 )
 

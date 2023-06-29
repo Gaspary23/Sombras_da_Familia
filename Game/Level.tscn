@@ -19,13 +19,13 @@
 position = Vector2( 578, 531 )
 
 [node name="Child" parent="." instance=ExtResource( 4 )]
-position = Vector2( 849, 198 )
+position = Vector2( 849, 225 )
 
 [node name="Father" parent="." instance=ExtResource( 5 )]
-position = Vector2( 432, 327 )
+position = Vector2( 432, 353 )
 
 [node name="Mother" parent="." instance=ExtResource( 1 )]
-position = Vector2( 503, 324 )
+position = Vector2( 503, 353 )
 
 [node name="Scenery" type="Node" parent="."]
 
