@@ -77,22 +77,22 @@ animations = [ {
 "frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
 "loop": true,
 "name": "back",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [ SubResource( 11 ) ],
 "loop": true,
 "name": "front",
-"speed": 15.0
+"speed": 10.0
 }, {
 "frames": [ SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ) ],
 "loop": true,
 "name": "left",
-"speed": 15.0
+"speed": 10.0
 }, {
 "frames": [ SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ) ],
 "loop": true,
 "name": "right",
-"speed": 15.0
+"speed": 10.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=6]
