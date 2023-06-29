@@ -31,7 +31,7 @@ func get_side_input():
 		sprite.play("left")
 	else:
 		sprite.stop()
-		sprite.play("down")
+		sprite.play("front")
 
 
 func squash_and_stretch():

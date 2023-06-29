@@ -5,10 +5,12 @@ onready var game_over_sound = $gameOverSound
 onready var hud = $HUD
 # NPC's
 onready var child = $Level/Child
+onready var father = $Level/Father
 onready var mother = $Level/Mother
 # Items
 onready var arcade = $Level/Scenery/Arcade
 onready var heater = $Level/Scenery/Heater
+onready var lawn_mower = $Level/Scenery/Lawn_Mower
 onready var radio = $Level/Scenery/Radio
 onready var washing_machine = $Level/Scenery/Washing_Machine
 
@@ -34,6 +36,13 @@ func check_power():
 		else:
 			arcade.is_using = true
 	
+	# Father Control
+	if (lawn_mower.touching_father):
+		if (heater.is_using):
+			lawn_mower.is_using = false
+		else:
+			lawn_mower.is_using = true
+	
 	# Mother control
 	if (washing_machine.touching_mother):
 		if (radio.is_using):
@@ -48,6 +57,12 @@ func check_suspicion():
 		child.suspicion_level.value += 0.5
 	elif (not child.is_checking()):
 		child.suspicion_level.value -= 0.5
+	
+	# Father control
+	if (father.is_working() and not lawn_mower.is_using):
+		father.suspicion_level.value += 0.5
+	elif (not father.is_checking()):
+		father.suspicion_level.value -= 0.5
 	
 	# Mother control
 	if (mother.is_working() and not washing_machine.is_using):
@@ -83,4 +98,5 @@ func _ready():
 	progress_bars = get_node("HUD")
 	
 	child.set_obj_pos(arcade.position)
+	father.set_obj_pos(lawn_mower.position)
 	mother.set_obj_pos(washing_machine.position)
