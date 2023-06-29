@@ -11,7 +11,7 @@ config_version=4
 [application]
 
 config/name="Sombras da Família"
-run/main_scene="res://Game/Game.tscn"
+run/main_scene="res://Game/Menu.tscn"
 config/icon="res://icon.png"
 
 [display]
