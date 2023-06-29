@@ -1,18 +1,18 @@
 extends KinematicBody2D
 
-export (int) var speed := 200
-enum State {working, waiting, checking, walking}
+export (int) var speed
+enum State {working, waiting, checking}
 
 onready var sprite = $AnimatedSprite
 onready var motion = Vector2.ZERO
 onready var initial_pos = position
 onready var obj_pos: Vector2
 onready var target_pos: Vector2
+onready var stairs_pos: Vector2
 onready var suspicion_level = $Suspicion_Level
 onready var checking_level = $Checking_Level
 
 var current_state = State.waiting
-var standBy = false
 var timer := Timer.new()
 var wait_time = 5
 var tween
@@ -24,44 +24,45 @@ func _physics_process(_delta):
 
 
 func state_machine():
+	if (not is_close_to_target()):
+		walk_to_target()
+	else:
+		motion.x = 0
+	
 	match current_state:
 		State.checking: # Look for player
-			checking_level.value -= 0.5
+			checking_level.value -= 0.1
 			
 			if (checking_level.value == 0):
+				target_pos = obj_pos
 				current_state = State.working
-				# return to some pos
 		
 		State.waiting: # Remain idle
-			standBy = false
 			target_pos = obj_pos
-			current_state = State.walking
-		
-		State.walking: # Go to target
-			if target_pos.x - position.x > 0:
-				motion.x = 1
-			elif target_pos.x - position.x < 0:
-				motion.x = -1
-			
 			if (is_close_to_target()):
-				motion.x = 0
-				if (standBy):
-					current_state = State.waiting 
-				else:
-					current_state = State.working 
-			get_side_movement()
-			motion = move_and_slide(motion, Vector2.UP)
-
+				current_state = State.working
+		
 		State.working: # Do work
 			sprite.stop()
 			sprite.play("back")
-			standBy = true
 			
 			if (suspicion_level.value == 100):
 				checking_level.value = 100
+				target_pos = stairs_pos
 				current_state = State.checking
 			#target_pos = initial_pos
 			#current_state = State.walking
+
+
+func walk_to_target():
+	if target_pos.x - position.x > 0:
+		motion.x = 1
+	elif target_pos.x - position.x < 0:
+		motion.x = -1
+	
+	motion.x *= speed
+	sprite_animation()
+	motion = move_and_slide(motion, Vector2.UP)
 
 
 func update_suspicion():
@@ -93,8 +94,7 @@ func is_close_to_target():
 	return (position.x < target_pos.x + 3 and position.x > target_pos.x - 3)
 
 
-func get_side_movement():
-	motion.x *= speed
+func sprite_animation():
 	if motion.x > 0:
 		sprite.play("right")
 	elif motion.x < 0:
@@ -104,8 +104,9 @@ func get_side_movement():
 		sprite.play("front")
 
 
-func set_obj_pos(pos: Vector2):
-	obj_pos = pos
+func set_targets_pos(obj: Vector2, stairs: Vector2):
+	obj_pos = obj
+	stairs_pos = stairs
 
 
 func is_working():

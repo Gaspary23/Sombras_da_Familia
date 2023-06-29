@@ -16,6 +16,7 @@ onready var washing_machine = $Level/Scenery/Washing_Machine
 
 var player : KinematicBody2D
 var progress_bars : CanvasLayer
+var stairs_pos: Position2D
 var current_scene
 var prev_time
 var inc_diff_time = 30
@@ -54,21 +55,21 @@ func check_power():
 func check_suspicion():
 	# Child control
 	if (child.is_working() and not arcade.is_using):
-		child.suspicion_level.value += 0.5
+		child.suspicion_level.value += 0.1
 	elif (not child.is_checking()):
-		child.suspicion_level.value -= 0.5
+		child.suspicion_level.value -= 0.1
 	
 	# Father control
 	if (father.is_working() and not lawn_mower.is_using):
-		father.suspicion_level.value += 0.5
+		father.suspicion_level.value += 0.1
 	elif (not father.is_checking()):
-		father.suspicion_level.value -= 0.5
+		father.suspicion_level.value -= 0.1
 	
 	# Mother control
 	if (mother.is_working() and not washing_machine.is_using):
-		mother.suspicion_level.value += 0.5
+		mother.suspicion_level.value += 0.1
 	elif (not mother.is_checking()):
-		mother.suspicion_level.value -= 0.5
+		mother.suspicion_level.value -= 0.1
 
 
 func increase_difficulty():
@@ -95,10 +96,9 @@ func _ready():
 	prev_time = OS.get_unix_time()
 	current_scene = get_child(0) # pega o Level1, etc
 	player = current_scene.get_node("Player")
+	stairs_pos = current_scene.get_node("Scenery/Stairs")
 	progress_bars = get_node("HUD")
 	
-	child.set_obj_pos(arcade.position)
-	print(arcade.position)
-	father.set_obj_pos(lawn_mower.position)
-	print(lawn_mower.position)
-	mother.set_obj_pos(washing_machine.position)
+	child.set_targets_pos(arcade.position, stairs_pos.position)
+	father.set_targets_pos(lawn_mower.position, stairs_pos.position)
+	mother.set_targets_pos(washing_machine.position, stairs_pos.position)

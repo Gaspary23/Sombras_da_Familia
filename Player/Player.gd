@@ -3,7 +3,6 @@ extends KinematicBody2D
 signal hide_wardrobe
 signal hide_workbench
 
-
 export (int) var speed := 200
 
 onready var sprite = $Sprite
