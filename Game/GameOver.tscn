@@ -1,60 +1,91 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://Fonts/Xolonium.tres" type="DynamicFont" id=1]
-[ext_resource path="res://Fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Fonts/OpenSans-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Fonts/MinimalUI.tres" type="Theme" id=2]
 [ext_resource path="res://Game/GameOver.gd" type="Script" id=3]
 [ext_resource path="res://SFX/buttonClick.mp3" type="AudioStream" id=4]
 
 [sub_resource type="DynamicFont" id=1]
+size = 80
+font_data = ExtResource( 1 )
 
-[sub_resource type="Theme" id=2]
-default_font = SubResource( 1 )
-Button/fonts/font = ExtResource( 1 )
+[sub_resource type="DynamicFont" id=2]
+size = 54
+font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=3]
-size = 30
-font_data = ExtResource( 2 )
+size = 54
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 54
+font_data = ExtResource( 1 )
 
 [node name="GameOver" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme = ExtResource( 2 )
 script = ExtResource( 3 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.0509804, 0.27451, 0.266667, 1 )
+color = Color( 0.12549, 0.14902, 0.164706, 0.588235 )
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-margin_left = 278.0
-margin_top = 251.0
-margin_right = 745.0
-margin_bottom = 348.0
-
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
-margin_right = 467.0
-margin_bottom = 97.0
-theme = SubResource( 2 )
-custom_fonts/font = ExtResource( 1 )
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -211.5
+margin_top = 100.0
+margin_right = 211.5
+margin_bottom = 210.0
+theme = ExtResource( 2 )
+custom_fonts/font = SubResource( 1 )
 text = "Game Over"
+align = 1
+valign = 1
 
-[node name="Button" type="Button" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -92.0
-margin_top = -225.0
-margin_right = 88.0
-margin_bottom = -125.0
+margin_left = -198.5
+margin_top = -300.0
+margin_right = 198.5
+margin_bottom = -128.0
+theme = ExtResource( 2 )
+custom_constants/separation = 10
+
+[node name="White_Space" type="Control" parent="VBoxContainer"]
+margin_right = 397.0
+
+[node name="Try_Again" type="Button" parent="VBoxContainer"]
+margin_top = 10.0
+margin_right = 397.0
+margin_bottom = 86.0
+theme = ExtResource( 2 )
+custom_fonts/font = SubResource( 2 )
+text = "Try Again"
+
+[node name="Return_to_Menu" type="Button" parent="VBoxContainer"]
+margin_top = 96.0
+margin_right = 397.0
+margin_bottom = 172.0
+theme = ExtResource( 2 )
 custom_fonts/font = SubResource( 3 )
-text = "Try Again!"
+text = "Return to Menu"
+
+[node name="Quit" type="Button" parent="VBoxContainer"]
+margin_top = 182.0
+margin_right = 397.0
+margin_bottom = 258.0
+custom_fonts/font = SubResource( 4 )
+text = "Quit"
 
 [node name="ButtonClick" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
 
-[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Try_Again" to="." method="_on_Try_Again_pressed"]
+[connection signal="pressed" from="VBoxContainer/Return_to_Menu" to="." method="_on_Return_to_Menu_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_Quit_pressed"]
