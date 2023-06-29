@@ -38,6 +38,7 @@ func state_machine():
 			current_state = State.walking
 		
 		State.walking: # Go to target
+			current_state = State.waiting
 			if target_pos.x - position.x > 0:
 				motion.x = 1
 			elif target_pos.x - position.x < 0:

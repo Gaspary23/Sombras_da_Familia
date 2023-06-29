@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Items/Radio.gd" type="Script" id=1]
 [ext_resource path="res://Items/Radio_Off.png" type="Texture" id=2]
-[ext_resource path="res://SFX/Monters_Inc_Theme.mp3" type="AudioStream" id=3]
+[ext_resource path="res://SFX/Monsters_Theme.ogg" type="AudioStream" id=3]
 [ext_resource path="res://Items/Radio_On.png" type="Texture" id=4]
 
 [sub_resource type="SpriteFrames" id=4]
@@ -37,6 +37,8 @@ shape = SubResource( 3 )
 
 [node name="Monster_Theme" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
+volume_db = -10.0
+bus = "SFX"
 
 [connection signal="body_entered" from="." to="." method="_on_Radio_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_Radio_body_exited"]

@@ -41,6 +41,7 @@ margin_top = -11.0
 margin_right = 11.0
 margin_bottom = 5.0
 stream = ExtResource( 4 )
+volume_db = -15.0
 
 [connection signal="body_entered" from="." to="." method="_on_Arcade_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_Arcade_body_exited"]
