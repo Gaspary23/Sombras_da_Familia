@@ -38,7 +38,6 @@ func state_machine():
 			current_state = State.walking
 		
 		State.walking: # Go to target
-			current_state = State.waiting
 			if target_pos.x - position.x > 0:
 				motion.x = 1
 			elif target_pos.x - position.x < 0:
@@ -54,6 +53,8 @@ func state_machine():
 			motion = move_and_slide(motion, Vector2.UP)
 
 		State.working: # Do work
+			sprite.stop()
+			sprite.play("back")
 			standBy = true
 			
 			if (suspicion_level.value == 100):
