@@ -19,7 +19,7 @@ extents = Vector2( 513.5, 20 )
 [node name="Level" type="Node" groups=["Level1"]]
 
 [node name="Player" parent="." instance=ExtResource( 9 )]
-position = Vector2( 537, 567 )
+position = Vector2( 537, 566 )
 
 [node name="Child" parent="." instance=ExtResource( 4 )]
 position = Vector2( 166, 337 )

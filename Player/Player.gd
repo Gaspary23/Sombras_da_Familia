@@ -10,6 +10,7 @@ var tween
 
 
 func _physics_process(_delta):
+	print(is_on_wall(), ", ", is_on_floor())
 	if (Input.is_action_just_pressed("interact")):
 		squash_and_stretch()
 		if(is_on_wall()):
