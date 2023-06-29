@@ -30,17 +30,25 @@ func state_machine():
 			checking_level.value -= 0.5
 			target_pos = stairs_pos
 			print(stairs_pos)
+			
 			if target_pos.x - position.x > 0:
 				motion.x = 1
 			elif target_pos.x - position.x < 0:
 				motion.x = -1
-			
-			if (is_close_to_target()):
+			if (is_close_to_target()):				
 				motion.x = 0
-				if (standBy):
-					current_state = State.waiting 
-				else:
-					current_state = State.working 
+				if target_pos.y - position.y > 0:
+					motion.y = 1
+				elif target_pos.x - position.y < 0:
+					motion.y = -1
+				if(is_close_to_target2()):
+					motion.y = 0
+					if (standBy):
+						current_state = State.waiting 
+					else:
+						current_state = State.working 
+				get_vertical_movement()
+				motion = move_and_slide(motion, Vector2.UP)
 			get_side_movement()
 			motion = move_and_slide(motion, Vector2.UP)
 			if (checking_level.value == 0):
@@ -104,6 +112,9 @@ func squash_and_stretch():
 
 func is_close_to_target():
 	return (position.x < target_pos.x + 2 and position.x > target_pos.x - 2)
+	
+func is_close_to_target2():
+	return (position.y < target_pos.y + 2 and position.y > target_pos.y - 2)
 
 
 func get_side_movement():
@@ -111,6 +122,16 @@ func get_side_movement():
 	if motion.x > 0:
 		sprite.play("right")
 	elif motion.x < 0:
+		sprite.play("left")
+	else:
+		sprite.stop()
+		sprite.play("front")
+		
+func get_vertical_movement():
+	motion.y *= speed
+	if motion.y > 0:
+		sprite.play("right")
+	elif motion.y < 0:
 		sprite.play("left")
 	else:
 		sprite.stop()
