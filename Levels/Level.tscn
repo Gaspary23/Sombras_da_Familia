@@ -20,21 +20,21 @@ extents = Vector2( 513.5, 20 )
 [node name="Level" type="Node" groups=["Level1"]]
 
 [node name="Player" parent="." instance=ExtResource( 9 )]
-position = Vector2( 576, 542 )
+position = Vector2( 578, 531 )
 
 [node name="Child" parent="." instance=ExtResource( 4 )]
-position = Vector2( 849, 167 )
+position = Vector2( 849, 198 )
 
 [node name="Father" parent="." instance=ExtResource( 5 )]
-position = Vector2( 398, 314 )
+position = Vector2( 432, 327 )
 
 [node name="Mother" parent="." instance=ExtResource( 1 )]
-position = Vector2( 470, 310 )
+position = Vector2( 503, 322 )
 
 [node name="Scenery" type="Node" parent="."]
 
 [node name="Grass" type="StaticBody2D" parent="Scenery"]
-position = Vector2( 505, 564 )
+position = Vector2( 505, 553 )
 z_index = -8
 __meta__ = {
 "_edit_group_": true
@@ -51,31 +51,30 @@ position = Vector2( 7.5, -0.5 )
 shape = SubResource( 1 )
 
 [node name="Arcade" parent="Scenery" instance=ExtResource( 2 )]
-position = Vector2( 336, 149 )
+position = Vector2( 386, 177 )
 
 [node name="Heater" parent="Scenery" instance=ExtResource( 11 )]
-position = Vector2( 477, 509 )
+position = Vector2( 497, 498 )
 z_index = -1
 
 [node name="Lawn_Mower" parent="Scenery" instance=ExtResource( 3 )]
-position = Vector2( 158, 326 )
+position = Vector2( 158, 319 )
 
 [node name="Radio" parent="Scenery" instance=ExtResource( 10 )]
-position = Vector2( 689, 506 )
+position = Vector2( 688, 495 )
 
 [node name="Washing_Machine" parent="Scenery" instance=ExtResource( 8 )]
-position = Vector2( 895, 304 )
+position = Vector2( 897, 317 )
 z_index = -1
 
 [node name="Wardrobe" parent="Scenery" instance=ExtResource( 7 )]
-position = Vector2( 338, 466 )
+position = Vector2( 383, 477 )
 
 [node name="WorkBench" parent="Scenery" instance=ExtResource( 6 )]
-position = Vector2( 857, 483 )
+position = Vector2( 868, 471 )
 
 [node name="Background" type="Sprite" parent="."]
-position = Vector2( 515, 297 )
-scale = Vector2( 1.08263, 1.12879 )
+position = Vector2( 530, 305 )
 z_index = -7
 texture = ExtResource( 13 )
 
