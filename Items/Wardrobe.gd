@@ -1,14 +1,13 @@
 extends KinematicBody2D
 
-onready var sprite = $AnimatedSprite
+onready var sprite = $Sprite
+onready var sound = $AudioStreamPlayer
 var tween
 
-func _on_Player_hide_workbench():
+
+func _on_Player_hide_wardrobe():
 	squash_and_stretch()
-	if (sprite.animation == "free"):
-		sprite.play("occupied")
-	else:
-		sprite.play("free")
+	sound.play()
 
 
 func squash_and_stretch():

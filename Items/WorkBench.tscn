@@ -18,7 +18,7 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 65, 46 )
+extents = Vector2( 64.5, 46 )
 
 [node name="Workbench" type="KinematicBody2D"]
 script = ExtResource( 3 )
@@ -29,4 +29,5 @@ animation = "free"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
+position = Vector2( -0.5, 0 )
 shape = SubResource( 1 )

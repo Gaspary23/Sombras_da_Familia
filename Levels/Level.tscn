@@ -29,7 +29,7 @@ position = Vector2( 849, 198 )
 position = Vector2( 432, 327 )
 
 [node name="Mother" parent="." instance=ExtResource( 1 )]
-position = Vector2( 503, 322 )
+position = Vector2( 503, 324 )
 
 [node name="Scenery" type="Node" parent="."]
 
@@ -54,26 +54,27 @@ shape = SubResource( 1 )
 position = Vector2( 386, 177 )
 
 [node name="Heater" parent="Scenery" instance=ExtResource( 11 )]
-position = Vector2( 497, 498 )
+position = Vector2( 510, 498 )
 z_index = -1
 
 [node name="Lawn_Mower" parent="Scenery" instance=ExtResource( 3 )]
 position = Vector2( 158, 319 )
 
 [node name="Radio" parent="Scenery" instance=ExtResource( 10 )]
-position = Vector2( 688, 495 )
+position = Vector2( 715, 495 )
 
 [node name="Washing_Machine" parent="Scenery" instance=ExtResource( 8 )]
 position = Vector2( 897, 317 )
 z_index = -1
 
 [node name="Wardrobe" parent="Scenery" instance=ExtResource( 7 )]
-position = Vector2( 390, 466 )
+position = Vector2( 391, 462 )
+scale = Vector2( 0.5, 0.6 )
 
 [node name="WorkBench" parent="Scenery" instance=ExtResource( 6 )]
-position = Vector2( 933, 519 )
+position = Vector2( 883, 484 )
 
-[node name="Background" type="Sprite" parent="."]
+[node name="Map" type="Sprite" parent="."]
 position = Vector2( 530, 305 )
 z_index = -7
 texture = ExtResource( 13 )

@@ -1,12 +1,12 @@
 extends KinematicBody2D
 
+signal hide_wardrobe
 signal hide_workbench
 
 
 export (int) var speed := 200
 
 onready var sprite = $Sprite
-onready var door_sound = $Door
 var motion = Vector2.ZERO
 var hidden = false
 var tween
@@ -23,7 +23,7 @@ func _physics_process(_delta):
 			if (position > get_viewport_rect().size/2):
 				emit_signal("hide_workbench")
 			else: # If on left side, hide on wardrobe
-				door_sound.play()
+				emit_signal("hide_wardrobe")
 	
 	if(not hidden):
 		get_side_input()
