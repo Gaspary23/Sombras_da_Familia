@@ -1,8 +1,8 @@
 extends KinematicBody2D
 
 export (int) var speed
-export (float) var wait_time
-export (float) var work_time
+export (Vector2) var wait_time_bound
+export (Vector2) var work_time_bound
 
 enum State {checking, waiting, working}
 
@@ -18,9 +18,12 @@ onready var task_clock = $Task_Progress
 onready var wait_timer = Timer.new()
 onready var work_timer = Timer.new()
 
+var rng = RandomNumberGenerator.new()
 var current_state = State.waiting
 var wait_bool = true
+var wait_time
 var work_bool = true
+var work_time
 var tween
 
 
@@ -77,6 +80,8 @@ func state_machine():
 					motion = Vector2.ZERO
 					sprite.stop()
 					sprite.play("front")
+					# Set new wait and work times
+					randomize_variables()
 					current_state = State.waiting
 			else:
 				go_work()
@@ -200,11 +205,6 @@ func set_targets_pos(obj: Vector2, stairs: Vector2):
 	stairs_pos = stairs
 
 
-func set_timers(wait, work):
-	wait_timer.set_wait_time(wait)
-	work_timer.set_wait_time(work)
-
-
 func is_working():
 	return current_state == State.working and target_pos == obj_pos and is_close_to_targetX()
 
@@ -212,8 +212,20 @@ func is_working():
 func is_checking():
 	return current_state == State.checking
 
+
 func is_at_basement():
 	return is_checking() and target_pos.y == stairs_pos.y and is_close_to_targetY()
+
+
+func randomize_variables():
+	wait_time = rng.randf_range(wait_time_bound.x, wait_time_bound.y)
+	work_time = rng.randf_range(work_time_bound.x, work_time_bound.y)
+	set_timers(wait_time, work_time)
+
+
+func set_timers(wait, work):
+	wait_timer.set_wait_time(wait)
+	work_timer.set_wait_time(work)
 
 
 func _ready():

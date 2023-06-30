@@ -5,11 +5,12 @@ var animation_done = true
 var door_pos
 var target_floor: int
 
+
 func _ready():
 	speed = 200
-	wait_time = 0.5
-	work_time = 5.2
-	set_timers(wait_time, work_time)
+	wait_time_bound = Vector2(2.5, 5.5)
+	work_time_bound = Vector2(3.5, 6.5)
+	randomize_variables()
 	
 	animation_timer = Timer.new()
 	animation_timer.set_one_shot(true)

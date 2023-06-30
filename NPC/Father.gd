@@ -2,9 +2,9 @@ extends "res://NPC/NPC.gd"
 
 func _ready():
 	speed = 100
-	wait_time = 4.0
-	work_time = 7.5
-	set_timers(wait_time, work_time)
+	wait_time_bound = Vector2(3.5, 6.5)
+	work_time_bound = Vector2(2.5, 7.5)
+	randomize_variables()
 
 
 func set_timers(wait_time, work_time):
