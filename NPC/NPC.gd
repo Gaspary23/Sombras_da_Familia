@@ -14,6 +14,7 @@ onready var target_pos: Vector2
 onready var stairs_pos: Vector2
 onready var suspicion_level = $Suspicion_Level
 onready var checking_level = $Checking_Level
+onready var task_clock = $Task_Progress
 onready var wait_timer = Timer.new()
 onready var work_timer = Timer.new()
 
@@ -26,6 +27,7 @@ var tween
 func _physics_process(_delta):
 	state_machine()
 	update_suspicion()
+	update_task_clock()
 
 
 func state_machine():
@@ -132,6 +134,16 @@ func update_suspicion():
 	# Animation feedback when changing bars
 	if (checking_level.value == 100 and suspicion_level.value == 100 and is_working()):
 		squash_and_stretch()
+
+
+func update_task_clock():
+	if (is_working() and not (work_timer.is_stopped() or work_timer.is_paused())):
+		task_clock.value = work_timer.time_left / work_time * 100
+	
+	if (is_working() and task_clock.value != 0):
+		task_clock.show()
+	else:
+		task_clock.hide() 
 
 
 func squash_and_stretch():

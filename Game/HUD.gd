@@ -19,8 +19,8 @@ func increase_difficulty() -> void:
 	coldness_delta *= diff_increment
 	madness_delta *= diff_increment
 	
-	coldness_delta = clamp(coldness_delta, -15, 15)
-	madness_delta = clamp(madness_delta, -15, 15)
+	coldness_delta = clamp(coldness_delta, -10, 10)
+	madness_delta = clamp(madness_delta, -10, 10)
 
 
 func _on_Radio_radio_switch():
