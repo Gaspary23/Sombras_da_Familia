@@ -25,12 +25,12 @@ func _on_Resume_pressed():
 
 func _on_Return_to_Menu_pressed():
 	sound.play()
-	yield(get_tree().create_timer(0.1), "timeout")
+	yield(get_tree().create_timer(0.3), "timeout")
 	self.is_paused = false
 	get_tree().change_scene("res://Game/Menu.tscn")
 
 
 func _on_Quit_pressed():
 	sound.play()
-	yield(get_tree().create_timer(0.1), "timeout")
+	yield(get_tree().create_timer(0.3), "timeout")
 	get_tree().quit()
