@@ -1,7 +1,5 @@
 extends Area2D
 
-signal lawn_mower_switch
-
 onready var sprite = $AnimatedSprite
 onready var sound = $AudioStreamPlayer
 var touching_father = false
@@ -19,7 +17,6 @@ func _process(_delta: float) -> void:
 
 
 func _on_Lawn_Mower_body_entered(_body):
-	emit_signal("lawn_mower_switch")
 	touching_father = true
 	is_using = true
 

@@ -34,7 +34,7 @@ func state_machine():
 			if (checking_level.value != 0):
 				check_basement()
 				# When downstair reduce checking level
-				if (is_close_to_targetY()): 
+				if (is_close_to_targetY() and target_pos == stairs_pos): 
 					checking_level.value -= 0.5
 			else:
 				work_bool = true
@@ -201,6 +201,9 @@ func is_working():
 
 func is_checking():
 	return current_state == State.checking
+
+func is_at_basement():
+	return is_checking() and target_pos.y == stairs_pos.y and is_close_to_targetY()
 
 
 func _ready():

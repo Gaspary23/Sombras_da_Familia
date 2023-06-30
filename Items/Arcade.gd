@@ -1,7 +1,5 @@
 extends Area2D
 
-signal arcade_switch
-
 onready var sprite = $AnimatedSprite
 onready var video = $VideoPlayer
 var touching_child = false
@@ -19,7 +17,6 @@ func _process(_delta: float) -> void:
 
 
 func _on_Arcade_body_entered(_body):
-	emit_signal("arcade_switch")
 	touching_child = true
 	is_using = true
 

@@ -5,7 +5,9 @@ signal heater_switch
 onready var sprite = $AnimatedSprite
 onready var sound = $AudioStreamPlayer
 var touching_player = false
+var touching_npc = false
 var is_using = false
+var timer
 
 func _process(_delta: float) -> void:
 	if (Input.is_action_just_pressed("interact") and touching_player):
@@ -21,8 +23,28 @@ func _process(_delta: float) -> void:
 		sprite.play("Off")
 
 
-func _on_Heater_body_entered(_body: Node) -> void:
-	touching_player = true
+func _on_Heater_body_entered(body: Node) -> void:
+	if (body.name == "Player"):
+		touching_player = true
+	else: 
+		touching_npc = true
+		timer.start()
 
-func _on_Heater_body_exited(_body: Node) -> void:
-	touching_player = false
+func _on_Heater_body_exited(body: Node) -> void:
+	if (body.name == "Player"):
+		touching_player = false
+	else:
+		touching_npc = false
+
+
+func _on_timer_timeout():
+	emit_signal("heater_switch")
+	is_using = false
+
+
+func _ready():
+	timer = Timer.new()
+	timer.set_one_shot(true)
+	timer.set_wait_time(1.5)
+	timer.connect("timeout", self, "_on_timer_timeout")
+	add_child(timer)

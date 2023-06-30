@@ -27,6 +27,7 @@ var timer
 func _physics_process(_delta: float):
 	check_power() # Electricity resource management
 	check_suspicion() # NPC suspicion
+	npc_turn_off_items() # If items are on underground, turn them off
 	increase_difficulty() # Make game harder
 	check_game_over()
 
@@ -80,6 +81,28 @@ func check_power():
 			washing_machine.is_using = true
 
 
+# If npc sees turned on items at the basement, turn them off
+func npc_turn_off_items():
+	if (child.is_at_basement()):
+		if (heater.is_using):
+			child.target_pos.x = heater.position.x
+		else:
+			child.target_pos.x = stairs_pos.position.x
+	
+	if (father.is_at_basement()):
+		if (heater.is_using):
+			father.target_pos.x = heater.position.x
+		else:
+			father.target_pos.x = stairs_pos.position.x
+	
+	if (mother.is_at_basement()):
+		if (radio.is_using):
+			mother.target_pos.x = radio.position.x
+		else:
+			mother.target_pos.x = stairs_pos.position.x
+	
+
+
 func increase_difficulty():
 	var current_time = OS.get_unix_time()
 	var elapsed_time = current_time - prev_time
@@ -93,9 +116,9 @@ func check_game_over():
 	if (
 		progress_bars.madness_bar.value >= 100 or
 		progress_bars.coldness_bar.value >= 100 or 
-		((child.is_checking() and child.is_close_to_targetY()) or
-		(father.is_checking() and father.is_close_to_targetY()) or
-		(mother.is_checking() and mother.is_close_to_targetY())) 
+		((child.is_at_basement()) or
+		(father.is_at_basement()) or
+		(mother.is_at_basement())) 
 		and not player.hidden
 	):
 		if (not game_over_sound.is_playing()):

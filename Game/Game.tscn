@@ -45,6 +45,7 @@ theme = ExtResource( 7 )
 margin_top = 54.0
 margin_right = 300.0
 margin_bottom = 104.0
+step = 0.1
 texture_under = ExtResource( 2 )
 texture_over = ExtResource( 6 )
 texture_progress = ExtResource( 3 )
@@ -69,6 +70,7 @@ theme = ExtResource( 7 )
 margin_top = 120.0
 margin_right = 300.0
 margin_bottom = 50.0
+step = 0.1
 texture_under = ExtResource( 2 )
 texture_over = ExtResource( 6 )
 texture_progress = ExtResource( 11 )
@@ -93,7 +95,6 @@ visible = false
 [connection signal="hide_wardrobe" from="Level/Player" to="Level/Scenery/Wardrobe" method="_on_Player_hide_wardrobe"]
 [connection signal="heater_switch" from="Level/Scenery/Heater" to="HUD" method="_on_Heater_heater_switch"]
 [connection signal="radio_switch" from="Level/Scenery/Radio" to="HUD" method="_on_Radio_radio_switch"]
-[connection signal="washing_machine_switch" from="Level/Scenery/Washing_Machine" to="HUD" method="_on_Washing_Machine_washing_machine_switch"]
 [connection signal="timeout" from="HUD/Madness/Madness_Timer" to="HUD" method="_on_Madness_Timer_timeout"]
 [connection signal="timeout" from="HUD/Coldness/Coldness_Timer" to="HUD" method="_on_Coldness_Timer_timeout"]
 
