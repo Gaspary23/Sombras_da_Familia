@@ -90,6 +90,7 @@ func increase_difficulty():
 
 
 func check_game_over():
+	print (player.hidden)
 	if (
 		progress_bars.madness_bar.value >= 100 or
 		progress_bars.coldness_bar.value >= 100 or 
