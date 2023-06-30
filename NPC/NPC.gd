@@ -51,13 +51,16 @@ func state_machine():
 				current_state = State.working
 		
 		State.working: # Do work
-			if (work_timer.is_stopped() and work_bool):
-				work_timer.start()
+			if (work_bool):
+				if (work_timer.is_stopped()):
+					work_timer.start()
+				elif (work_timer.is_paused()):
+					work_timer.set_paused(false)
 				work_bool = false
 			
 			# Update suspicion level
 			if (suspicion_level.value == 100):
-				work_timer.stop()
+				work_timer.set_paused(true)
 				checking_level.value = 100
 				target_pos = stairs_pos
 				current_state = State.checking

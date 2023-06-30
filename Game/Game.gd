@@ -24,6 +24,7 @@ var timer
 
 
 func _physics_process(_delta: float):
+	print(mother.work_timer.time_left, ", ", mother.current_state)
 	check_power() # Electricity resource management
 	check_suspicion() # NPC suspicion
 	increase_difficulty() # Make game harder
