@@ -45,7 +45,7 @@ func state_machine():
 			if (wait_timer.is_stopped() and wait_bool):
 				wait_timer.start()
 				wait_bool = false
-				
+			
 			# On timeout, go to obj_pos
 			if (wait_timer.time_left == 0):
 				current_state = State.working

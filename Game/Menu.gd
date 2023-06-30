@@ -14,7 +14,7 @@ func _on_Start_pressed():
 
 func _on_Leaderboard_pressed():
 	sound.play()
-	yield(get_tree().create_timer(0.2), "timeout")
+	yield(get_tree().create_timer(0.3), "timeout")
 	get_tree().change_scene("res://Game/Leaderboard.tscn")
 
 func _on_Quit_pressed():

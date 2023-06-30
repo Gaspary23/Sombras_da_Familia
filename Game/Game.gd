@@ -25,7 +25,6 @@ var timer
 
 
 func _physics_process(_delta: float):
-	print(mother.work_timer.time_left, ", ", mother.current_state)
 	check_power() # Electricity resource management
 	check_suspicion() # NPC suspicion
 	increase_difficulty() # Make game harder
@@ -35,20 +34,26 @@ func _physics_process(_delta: float):
 func check_suspicion():
 	# Child control
 	if (child.is_working() and not arcade.is_using):
+		child.work_timer.set_paused(true)
 		child.suspicion_level.value += 0.5
 	elif (not child.is_checking()):
+		child.work_bool = true
 		child.suspicion_level.value -= 0.5
 	
 	# Father control
 	if (father.is_working() and not lawn_mower.is_using):
+		father.work_timer.set_paused(true)
 		father.suspicion_level.value += 0.5
 	elif (not father.is_checking()):
+		father.work_bool = true
 		father.suspicion_level.value -= 0.5
 	
 	# Mother control
 	if (mother.is_working() and not washing_machine.is_using):
+		mother.work_timer.set_paused(true)
 		mother.suspicion_level.value += 0.5
 	elif (not mother.is_checking()):
+		mother.work_bool = true
 		mother.suspicion_level.value -= 0.5
 
 
