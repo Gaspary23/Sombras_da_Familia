@@ -90,14 +90,13 @@ func increase_difficulty():
 
 
 func check_game_over():
-	print (player.hidden)
 	if (
 		progress_bars.madness_bar.value >= 100 or
 		progress_bars.coldness_bar.value >= 100 or 
 		((child.is_checking() and child.is_close_to_targetY()) or
 		(father.is_checking() and father.is_close_to_targetY()) or
-		(mother.is_checking() and mother.is_close_to_targetY()) 
-		and not player.hidden)
+		(mother.is_checking() and mother.is_close_to_targetY())) 
+		and not player.hidden
 	):
 		if (not game_over_sound.is_playing()):
 			game_over_sound.play()
