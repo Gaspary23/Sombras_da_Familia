@@ -17,9 +17,10 @@ onready var washing_machine = $Level/Scenery/Washing_Machine
 var player : KinematicBody2D
 var progress_bars : CanvasLayer
 var stairs_pos: Position2D
+var inc_diff_time = 30
 var current_scene
 var prev_time
-var inc_diff_time = 30
+var timer
 
 
 func _physics_process(_delta: float):
@@ -85,9 +86,13 @@ func check_game_over():
 	if (progress_bars.madness_bar.value >= 100 
 	or progress_bars.coldness_bar.value >= 100):
 		
-		game_over_sound.play()
-		yield(get_tree().create_timer(1), "timeout")
-		get_tree().change_scene("res://Game/GameOver.tscn")
+		if (not game_over_sound.is_playing()):
+			game_over_sound.play()
+		if (timer.is_stopped()):
+			timer.start()
+
+func _on_timer_timeout():
+	get_tree().change_scene("res://Game/GameOver.tscn")
 
 
 func _ready():
@@ -100,3 +105,9 @@ func _ready():
 	child.set_targets_pos(arcade.position, stairs_pos.position)
 	father.set_targets_pos(lawn_mower.position, stairs_pos.position)
 	mother.set_targets_pos(washing_machine.position, stairs_pos.position)
+	
+	timer = Timer.new()
+	timer.set_one_shot(true)
+	timer.set_wait_time(1)
+	timer.connect("timeout", self, "_on_timer_timeout")
+	add_child(timer)
