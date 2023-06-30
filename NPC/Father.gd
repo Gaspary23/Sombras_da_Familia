@@ -9,3 +9,9 @@ func _ready():
 
 func set_timers(wait_time, work_time):
 	.set_timers(wait_time, work_time)
+
+
+func _process(_delta):
+	if (is_working()):
+		sprite.stop()
+		sprite.play("left")
