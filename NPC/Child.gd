@@ -9,22 +9,16 @@ var target_floor: int
 func _ready():
 	speed = 200
 	wait_time_bound = Vector2(2.5, 5.5)
-	work_time_bound = Vector2(3.5, 6.5)
-	randomize_variables()
+	work_time_bound = Vector2(6.5, 9.5)
+	wait_time = 1
+	work_time = 5
+	set_timers(wait_time, work_time)
 	
 	animation_timer = Timer.new()
 	animation_timer.set_one_shot(true)
 	animation_timer.set_wait_time(1)
 	animation_timer.connect("timeout", self, "_on_timer_timeout")
 	add_child(animation_timer)
-
-
-func set_timers(wait_time, work_time):
-	.set_timers(wait_time, work_time)
-
-
-func set_door_pos(pos):
-	door_pos = pos
 
 
 func go_to_target_floor():
@@ -43,7 +37,6 @@ func go_to_target_floor():
 func _on_timer_timeout():
 	sprite.show()
 	animation_done = true
-	
 	match (target_floor):
 		1:
 			position = door_pos 
@@ -76,3 +69,11 @@ func update_suspicion():
 		checking_level.hide()
 	else:
 		.update_suspicion()
+
+
+func set_timers(wait, work):
+	.set_timers(wait, work)
+
+
+func set_door_pos(pos):
+	door_pos = pos
