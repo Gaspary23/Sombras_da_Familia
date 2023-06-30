@@ -3,6 +3,7 @@ extends Node2D
 # Game Control
 onready var game_over_sound = $gameOverSound
 onready var hud = $HUD
+onready var leaderboard = $Leaderboard
 # NPC's
 onready var child = $Level/Child
 onready var father = $Level/Father
@@ -92,6 +93,7 @@ func check_game_over():
 			timer.start()
 
 func _on_timer_timeout():
+	leaderboard.updateLeader($HUD/Timer/Label.text)
 	get_tree().change_scene("res://Game/GameOver.tscn")
 
 

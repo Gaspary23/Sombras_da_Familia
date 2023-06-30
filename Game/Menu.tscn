@@ -84,4 +84,5 @@ text = "Quit"
 stream = ExtResource( 4 )
 
 [connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_Start_pressed"]
+[connection signal="pressed" from="VBoxContainer/Leaderboard" to="." method="_on_Leaderboard_pressed"]
 [connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_Quit_pressed"]
