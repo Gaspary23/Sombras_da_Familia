@@ -1,7 +1,9 @@
 extends "res://NPC/NPC.gd"
 
-var door_pos
 var animation_timer
+var animation_done = true
+var door_pos
+var target_floor: int
 
 func _ready():
 	speed = 200
@@ -23,36 +25,53 @@ func set_timers(wait_time, work_time):
 func set_door_pos(pos):
 	door_pos = pos
 
-func go_to_first_floor():
+
+func go_to_target_floor():
 	target_pos = door_pos
 	if (not is_close_to_targetX()):
 		walk_to_target()
 	else:
 		position.x = door_pos.x
 		motion = Vector2.ZERO
-		sprite.stop()
-		sprite.play("front")
+		sprite.hide()
+		animation_done = false
 		if (animation_timer.is_stopped()):
 			animation_timer.start()
-		sprite.hide()
 
 
 func _on_timer_timeout():
 	sprite.show()
-	checking_level.show()
-	position = door_pos 
-	target_pos = stairs_pos
+	animation_done = true
+	
+	match (target_floor):
+		1:
+			position = door_pos 
+			target_pos = stairs_pos
+		2:
+			position.x = door_pos.x
+			position.y = obj_pos.y
+			target_pos = obj_pos
 
 
 func check_basement():
 	if (position.y < door_pos.y):
-		go_to_first_floor()
+		target_floor = 1
+		go_to_target_floor()
 	else:
 		.check_basement()
 
 
+func go_work():
+	if (position.y < door_pos.y + 3 and position.y > door_pos.y - 3):
+		position.y = door_pos.y
+		target_floor = 2
+		go_to_target_floor()
+	else:
+		.go_work()
+
+
 func update_suspicion():
-	if (animation_timer.time_left != 0):
+	if (not animation_done):
 		checking_level.hide()
 	else:
 		.update_suspicion()
