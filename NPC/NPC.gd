@@ -1,8 +1,9 @@
 extends KinematicBody2D
 
 export (int) var speed
-export (float) var task_time
-export (float) var waiting_time
+export (float) var wait_time
+export (float) var work_time
+
 enum State {checking, waiting, working}
 
 onready var sprite = $AnimatedSprite
@@ -13,11 +14,13 @@ onready var target_pos: Vector2
 onready var stairs_pos: Vector2
 onready var suspicion_level = $Suspicion_Level
 onready var checking_level = $Checking_Level
-onready var work_progress = 0.0
+onready var wait_timer = Timer.new()
+onready var work_timer = Timer.new()
 
 var current_state = State.waiting
+var wait_bool = true
+var work_bool = true
 var tween
-var a = 0
 
 
 func _physics_process(_delta):
@@ -25,45 +28,62 @@ func _physics_process(_delta):
 	update_suspicion()
 
 
-func state_machine():	
+func state_machine():
 	match current_state:
 		State.checking: # Look for player
 			if (checking_level.value != 0):
 				check_basement()
-				if (is_close_to_targetY()):
+				# When downstair reduce checking level
+				if (is_close_to_targetY()): 
 					checking_level.value -= 0.5
 			else:
+				work_bool = true
 				target_pos = obj_pos
 				current_state = State.working
 		
 		State.waiting: # Remain idle
-			#wait(waiting_time)
-			target_pos = obj_pos
-			if (not is_close_to_targetX()):
-				walk_to_target()
-			else:
+			if (wait_timer.is_stopped() and wait_bool):
+				wait_timer.start()
+				wait_bool = false
+				
+			# On timeout, go to obj_pos
+			if (wait_timer.time_left == 0):
 				current_state = State.working
 		
 		State.working: # Do work
-			go_work()
-			if(task_time == 2.5):
-				work_progress = work_progress + 0.1
-				if (work_progress < task_time + 0.1 and work_progress >= task_time):
-					target_pos = initial_pos
-					work_progress = 0
-					current_state = State.checking
-					
-				else:
-					print(work_progress)
+			if (work_timer.is_stopped() and work_bool):
+				work_timer.start()
+				work_bool = false
+			
+			# Update suspicion level
 			if (suspicion_level.value == 100):
+				work_timer.stop()
 				checking_level.value = 100
 				target_pos = stairs_pos
 				current_state = State.checking
-			#else:
-			#	wait(waiting_time)
-			#	workDone = workDone + 1
-			#target_pos = initial_pos
-			#current_state = State.walking
+			
+			# On timeout, go to initial_pos
+			if (work_timer.time_left == 0):
+				if (not is_close_to_targetX()):
+					walk_to_target()
+				elif (is_close_to_targetX()):
+					position = initial_pos
+					motion = Vector2.ZERO
+					sprite.stop()
+					sprite.play("front")
+					current_state = State.waiting
+			else:
+				go_work()
+
+
+func _on_wait_timer_timeout():
+	target_pos = obj_pos
+	work_bool = true
+
+
+func _on_work_timer_timeout():
+	target_pos = initial_pos
+	wait_bool = true
 
 
 func check_basement():
@@ -167,6 +187,11 @@ func set_targets_pos(obj: Vector2, stairs: Vector2):
 	stairs_pos = stairs
 
 
+func set_timers(wait, work):
+	wait_timer.set_wait_time(wait)
+	work_timer.set_wait_time(work)
+
+
 func is_working():
 	return current_state == State.working and target_pos == obj_pos and is_close_to_targetX()
 
@@ -177,3 +202,9 @@ func is_checking():
 
 func _ready():
 	checking_level.value = 0
+	wait_timer.set_one_shot(true)
+	work_timer.set_one_shot(true)
+	wait_timer.connect("timeout", self, "_on_wait_timer_timeout")
+	work_timer.connect("timeout", self, "_on_work_timer_timeout")
+	add_child(wait_timer)
+	add_child(work_timer)
