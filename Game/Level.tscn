@@ -11,7 +11,7 @@
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Items/Radio.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Items/Heater.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Items/Background.png" type="Texture" id=13]
+[ext_resource path="res://GFX/Background.png" type="Texture" id=13]
 
 [node name="Level" type="Node" groups=["Level1"]]
 

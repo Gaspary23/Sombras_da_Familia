@@ -21,21 +21,6 @@ script = ExtResource( 5 )
 [node name="HUD" type="CanvasLayer" parent="." groups=["HUD"]]
 script = ExtResource( 4 )
 
-[node name="PauseMenu" parent="HUD" instance=ExtResource( 8 )]
-visible = false
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -512.0
-margin_top = -300.0
-margin_right = -512.0
-margin_bottom = -300.0
-
-[node name="ColorRect" parent="HUD/PauseMenu" index="0"]
-margin_right = 1024.0
-margin_bottom = 600.0
-
 [node name="Madness" type="Control" parent="HUD"]
 margin_right = 40.0
 margin_bottom = 40.0
@@ -84,13 +69,19 @@ margin_top = 140.0
 margin_right = 300.0
 text = "COLDNESS"
 
+[node name="Leaderboard" parent="HUD" instance=ExtResource( 12 )]
+visible = false
+
+[node name="PauseMenu" parent="HUD" instance=ExtResource( 8 )]
+visible = false
+
+[node name="ColorRect" parent="HUD/PauseMenu" index="0"]
+color = Color( 0.12549, 0.14902, 0.164706, 0.588235 )
+
 [node name="Timer" parent="HUD" instance=ExtResource( 10 )]
 
 [node name="gameOverSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 9 )
-
-[node name="Leaderboard" parent="." instance=ExtResource( 12 )]
-visible = false
 
 [connection signal="hide_wardrobe" from="Level/Player" to="Level/Scenery/Wardrobe" method="_on_Player_hide_wardrobe"]
 [connection signal="heater_switch" from="Level/Scenery/Heater" to="HUD" method="_on_Heater_heater_switch"]

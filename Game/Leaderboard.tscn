@@ -9,10 +9,6 @@
 size = 80
 font_data = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=2]
-size = 54
-font_data = ExtResource( 3 )
-
 [sub_resource type="DynamicFont" id=3]
 size = 50
 font_data = ExtResource( 3 )
@@ -33,6 +29,10 @@ font_data = ExtResource( 3 )
 size = 50
 font_data = ExtResource( 3 )
 
+[sub_resource type="DynamicFont" id=2]
+size = 54
+font_data = ExtResource( 3 )
+
 [node name="Leaderboard" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -43,11 +43,21 @@ margin_right = 1022.0
 margin_bottom = 595.0
 color = Color( 0.12549, 0.14902, 0.164706, 1 )
 
-[node name="Label" type="Label" parent="."]
-margin_left = 99.0
-margin_top = 100.0
-margin_right = 925.0
-margin_bottom = 210.0
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 231.0
+margin_top = 42.0
+margin_right = 793.0
+margin_bottom = 557.0
+custom_constants/separation = 10
+alignment = 1
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+margin_right = 562.0
+margin_bottom = 110.0
 rect_min_size = Vector2( 300, 100 )
 theme = ExtResource( 2 )
 custom_fonts/font = SubResource( 1 )
@@ -56,57 +66,64 @@ align = 1
 valign = 1
 uppercase = true
 
-[node name="Button" type="Button" parent="."]
-margin_right = 249.0
-margin_bottom = 88.0
-theme = ExtResource( 2 )
-custom_fonts/font = SubResource( 2 )
-text = "Back"
+[node name="White_Space" type="Control" parent="CenterContainer/VBoxContainer"]
+margin_top = 120.0
+margin_right = 562.0
+margin_bottom = 120.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-margin_left = 240.0
-margin_top = 220.0
-margin_right = 805.0
-margin_bottom = 571.0
-
-[node name="top1" type="Label" parent="VBoxContainer"]
-margin_right = 565.0
-margin_bottom = 69.0
+[node name="top1" type="Label" parent="CenterContainer/VBoxContainer"]
+margin_top = 130.0
+margin_right = 562.0
+margin_bottom = 199.0
 theme = ExtResource( 2 )
 custom_fonts/font = SubResource( 3 )
 text = "1º Melhor tempo: "
+align = 1
 
-[node name="top2" type="Label" parent="VBoxContainer"]
-margin_top = 73.0
-margin_right = 565.0
-margin_bottom = 142.0
+[node name="top2" type="Label" parent="CenterContainer/VBoxContainer"]
+margin_top = 209.0
+margin_right = 562.0
+margin_bottom = 278.0
 theme = ExtResource( 2 )
 custom_fonts/font = SubResource( 4 )
 text = "2º Melhor tempo: "
+align = 1
 
-[node name="top3" type="Label" parent="VBoxContainer"]
-margin_top = 146.0
-margin_right = 565.0
-margin_bottom = 215.0
+[node name="top3" type="Label" parent="CenterContainer/VBoxContainer"]
+margin_top = 288.0
+margin_right = 562.0
+margin_bottom = 357.0
 theme = ExtResource( 2 )
 custom_fonts/font = SubResource( 5 )
 text = "3º Melhor tempo: "
+align = 1
 
-[node name="top4" type="Label" parent="VBoxContainer"]
-margin_top = 219.0
-margin_right = 565.0
-margin_bottom = 288.0
+[node name="top4" type="Label" parent="CenterContainer/VBoxContainer"]
+margin_top = 367.0
+margin_right = 562.0
+margin_bottom = 436.0
 theme = ExtResource( 2 )
 custom_fonts/font = SubResource( 6 )
 text = "4º Melhor tempo: "
+align = 1
 
-[node name="top5" type="Label" parent="VBoxContainer"]
-margin_top = 292.0
-margin_right = 565.0
-margin_bottom = 361.0
+[node name="top5" type="Label" parent="CenterContainer/VBoxContainer"]
+margin_top = 446.0
+margin_right = 562.0
+margin_bottom = 515.0
 theme = ExtResource( 2 )
 custom_fonts/font = SubResource( 7 )
 text = "5º Melhor tempo: "
+align = 1
+
+[node name="Button" type="Button" parent="."]
+margin_left = 11.0
+margin_top = 509.0
+margin_right = 165.0
+margin_bottom = 585.0
+theme = ExtResource( 2 )
+custom_fonts/font = SubResource( 2 )
+text = "Back"
 
 [node name="ButtonClick" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )

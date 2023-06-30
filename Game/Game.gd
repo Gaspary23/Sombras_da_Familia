@@ -3,7 +3,7 @@ extends Node2D
 # Game Control
 onready var game_over_sound = $gameOverSound
 onready var hud = $HUD
-onready var leaderboard = $Leaderboard
+onready var leaderboard = $HUD/Leaderboard
 # NPC's
 onready var child = $Level/Child
 onready var father = $Level/Father

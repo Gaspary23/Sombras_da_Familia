@@ -6,11 +6,11 @@ var top3 = "00:00:00"
 var top4 = "00:00:00"
 var top5 = "00:00:00"
 
-onready var label1 = $VBoxContainer/top1
-onready var label2 = $VBoxContainer/top2
-onready var label3 = $VBoxContainer/top3
-onready var label4 = $VBoxContainer/top4
-onready var label5 = $VBoxContainer/top5 
+onready var label1 = $CenterContainer/VBoxContainer/top1
+onready var label2 = $CenterContainer/VBoxContainer/top2
+onready var label3 = $CenterContainer/VBoxContainer/top3
+onready var label4 = $CenterContainer/VBoxContainer/top4
+onready var label5 = $CenterContainer/VBoxContainer/top5 
 
 onready var sound = $ButtonClick
 
@@ -97,5 +97,5 @@ func load_file(fileId: int):
 
 func _on_Button_pressed() -> void:
 	sound.play()
-	yield(get_tree().create_timer(0.2), "timeout")
+	yield(get_tree().create_timer(0.3), "timeout")
 	get_tree().change_scene("res://Game/Menu.tscn")
