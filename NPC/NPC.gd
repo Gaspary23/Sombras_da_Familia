@@ -51,7 +51,7 @@ func state_machine():
 				current_state = State.working
 		
 		State.working: # Do work
-			if (work_bool):
+			if (work_bool and is_working()):
 				if (work_timer.is_stopped()):
 					work_timer.start()
 				elif (work_timer.is_paused()):

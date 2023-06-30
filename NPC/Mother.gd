@@ -5,7 +5,6 @@ func _ready():
 	wait_time = 3.3
 	work_time = 9.2
 	set_timers(wait_time, work_time)
-	#9.5 (66%)
 
 func set_timers(wait_time, work_time):
 	.set_timers(wait_time, work_time)
