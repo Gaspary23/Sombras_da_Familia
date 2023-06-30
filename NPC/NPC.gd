@@ -1,6 +1,8 @@
 extends KinematicBody2D
 
 export (int) var speed
+export (float) var task_time
+export (float) var waiting_time
 enum State {checking, waiting, working}
 
 onready var sprite = $AnimatedSprite
@@ -11,9 +13,11 @@ onready var target_pos: Vector2
 onready var stairs_pos: Vector2
 onready var suspicion_level = $Suspicion_Level
 onready var checking_level = $Checking_Level
+onready var work_progress = 0.0
 
 var current_state = State.waiting
 var tween
+var a = 0
 
 
 func _physics_process(_delta):
@@ -33,6 +37,7 @@ func state_machine():
 				current_state = State.working
 		
 		State.waiting: # Remain idle
+			#wait(waiting_time)
 			target_pos = obj_pos
 			if (not is_close_to_targetX()):
 				walk_to_target()
@@ -41,11 +46,22 @@ func state_machine():
 		
 		State.working: # Do work
 			go_work()
-			
+			if(task_time == 2.5):
+				work_progress = work_progress + 0.1
+				if (work_progress < task_time + 0.1 and work_progress >= task_time):
+					target_pos = initial_pos
+					work_progress = 0
+					current_state = State.checking
+					
+				else:
+					print(work_progress)
 			if (suspicion_level.value == 100):
 				checking_level.value = 100
 				target_pos = stairs_pos
 				current_state = State.checking
+			#else:
+			#	wait(waiting_time)
+			#	workDone = workDone + 1
 			#target_pos = initial_pos
 			#current_state = State.walking
 
