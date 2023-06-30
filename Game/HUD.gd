@@ -2,7 +2,7 @@ extends CanvasLayer
 
 onready var coldness_bar = $Coldness/Coldness_Progress
 onready var madness_bar = $Madness/Madness_Progress
-var coldness_delta = 5
+var coldness_delta = 50
 var madness_delta = 5
 var diff_increment = 2
 

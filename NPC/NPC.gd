@@ -13,8 +13,6 @@ onready var suspicion_level = $Suspicion_Level
 onready var checking_level = $Checking_Level
 
 var current_state = State.waiting
-var timer := Timer.new()
-var wait_time = 5
 var tween
 
 
@@ -163,5 +161,3 @@ func is_checking():
 
 func _ready():
 	checking_level.value = 0
-	self.add_child(timer)
-	timer.start()

@@ -85,10 +85,8 @@ func check_game_over():
 	if (progress_bars.madness_bar.value >= 100 
 	or progress_bars.coldness_bar.value >= 100):
 		
-		if (not game_over_sound.is_playing()):
-			game_over_sound.play()
-		else:
-			game_over_sound.stop()
+		game_over_sound.play()
+		yield(get_tree().create_timer(1), "timeout")
 		get_tree().change_scene("res://Game/GameOver.tscn")
 
 
