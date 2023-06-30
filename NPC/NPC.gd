@@ -64,6 +64,7 @@ func state_machine():
 			if (suspicion_level.value == 100):
 				work_timer.set_paused(true)
 				checking_level.value = 100
+				squash_and_stretch()
 				target_pos = stairs_pos
 				current_state = State.checking
 			
@@ -81,11 +82,12 @@ func state_machine():
 				go_work()
 
 
+# When done waiting go to work
 func _on_wait_timer_timeout():
 	target_pos = obj_pos
 	work_bool = true
 
-
+# When done working go wait
 func _on_work_timer_timeout():
 	target_pos = initial_pos
 	wait_bool = true
@@ -130,10 +132,6 @@ func update_suspicion():
 			suspicion_level.hide()
 		else:
 			suspicion_level.show()
-	
-	# Animation feedback when changing bars
-	if (checking_level.value == 100 and suspicion_level.value == 100 and is_working()):
-		squash_and_stretch()
 
 
 func update_task_clock():

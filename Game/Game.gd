@@ -17,7 +17,8 @@ onready var washing_machine = $Level/Scenery/Washing_Machine
 
 var player : KinematicBody2D
 var progress_bars : CanvasLayer
-var stairs_pos: Position2D
+var door_pos : Position2D
+var stairs_pos : Position2D
 var inc_diff_time = 30
 var current_scene
 var prev_time
@@ -135,9 +136,11 @@ func _ready():
 	prev_time = OS.get_unix_time()
 	current_scene = get_child(0) # pega o Level1, etc
 	player = current_scene.get_node("Player")
+	door_pos = current_scene.get_node("Scenery/Door")
 	stairs_pos = current_scene.get_node("Scenery/Stairs")
 	progress_bars = get_node("HUD")
 	
+	child.set_door_pos(door_pos.position)
 	child.set_targets_pos(arcade.position, stairs_pos.position)
 	father.set_targets_pos(lawn_mower.position, stairs_pos.position)
 	mother.set_targets_pos(washing_machine.position, stairs_pos.position)

@@ -59,6 +59,9 @@ position = Vector2( 883, 484 )
 [node name="Stairs" type="Position2D" parent="Scenery"]
 position = Vector2( 602, 531 )
 
+[node name="Door" type="Position2D" parent="Scenery"]
+position = Vector2( 633, 353 )
+
 [node name="Map" type="Sprite" parent="."]
 position = Vector2( 530, 305 )
 z_index = -7
